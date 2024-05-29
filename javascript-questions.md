@@ -35,3 +35,34 @@ sayHi()
 </details>
 
 ---
+
+###### 2. 將會輸出什麽內容？
+
+```javascript
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1)
+}
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1)
+}
+```
+
+- A: `0 1 2` 和 `0 1 2`
+- B: `0 1 2` 和 `3 3 3`
+- C: `3 3 3` 和 `0 1 2`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+由於 JavaScript 的事件佇列（Event Queue），`setTimeout` 的 `callback` 會在*遍歷結束後*才執行。因為在第一個迴圈中，遍歷 `i` 是透過 `var` 關鍵字宣告的，`var` 屬於 Function scope（需要用 `function() {}` 才能將值鎖在作用域裡面）
+，所以 `for` 迴圈會造成變數外流，變成全域變數。在遍歷過程中，我們透過一元運算子 `++` 來遞增 `i` 的值。當 `setTimeout` 的 `callback` 執行的時候，`i` 的值等於 3。
+
+在第二個迴圈中，遍歷 `i` 是透過 `let` 關鍵字宣告的：透過 `let` 和 `const` 關鍵字的變數擁有塊級作用域（指的是任何在 `{}` 中的内容）。在每次的遍歷過程中，`i` 都有一個新值，每次遍歷時 `i` 值的作用域都在迴圈内。
+
+</p>
+</details>
+
+---
