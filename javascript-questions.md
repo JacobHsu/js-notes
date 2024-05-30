@@ -66,3 +66,39 @@ for (let i = 0; i < 3; i++) {
 </details>
 
 ---
+
+###### 3. 將會輸出什麽內容？
+
+```javascript
+const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2
+  },
+  perimeter: () => 2 * Math.PI * this.radius
+}
+
+shape.diameter()
+shape.perimeter()
+```
+
+- A: `20` and `62.83185307179586`
+- B: `20` and `NaN`
+- C: `20` and `63`
+- D: `NaN` and `63`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案 B
+
+注意 `diameter` 的值是一個一般的函式，但是 `perimeter` 的值是一個箭頭函式。
+
+對於箭頭函式，`this` 關鍵字指向的是它當前周圍作用域，這個行為和一般函式不同。這表示當我們呼叫 `perimeter` 時，`this` 不是指向 `shape` 物件，而是它的周圍作用域（在範例中是 `window`）。
+
+在 `window` 中沒有 `radius` 這個屬性，因此回傳 `undefined`。
+
+</p>
+</details>
+
+---
