@@ -102,3 +102,29 @@ shape.perimeter()
 </details>
 
 ---
+
+###### 4. 將會輸出什麽內容？
+
+```javascript
++true;
+!"Lydia";
+```
+
+- A: `1` and `false`
+- B: `false` and `NaN`
+- C: `false` and `false`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+一元運算子加號 `+`，嘗試將 boolean 布林值型別轉為 number 數字型別。`true` 轉為 number 數字型別的話為 `1`，`false` 爲 `0`。
+
+字串型別 `'Lydia'` 是一個真值，我們實際上問的題目是：「這個真值的相反會是什麼？」，真值的相反，將得到 `false`。
+
+</p>
+
+</details>
+
+---
