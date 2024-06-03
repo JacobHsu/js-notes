@@ -128,3 +128,39 @@ shape.perimeter()
 </details>
 
 ---
+
+###### 5. 哪一個是正確的描述？
+
+```javascript
+const bird = {
+  size: 'small'
+}
+
+const mouse = {
+  name: 'Mickey',
+  small: true
+}
+```
+
+- A: `mouse.bird.size`是無效的
+- B: `mouse[bird.size]`是無效的
+- C: `mouse[bird["size"]]`是無效的
+- D: 以上三個選項都是有效的
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+在 JavaScript 中，所有物件的 keys 都是字串型別（除非是 Symbol 物件）。儘管我們或許不會定義它們為字串，但它們在底層總會被轉換爲字串。
+
+當我們使用中括號時（[]），JavaScript 會解譯語句。它首先看到中括號的第一個開始處 `[` 並繼續往下直到找到結束的中括號 `]`。只有這樣，它才能計算語句的值。
+
+`mouse[bird.size]`：首先計算 `bird.size`，這會得到 `small`。`mouse["small"]` 得到 `true`。
+
+使用點的語法的時候，上面這一切都不會發生。`mouse` 沒有 `bird` 這個 key，這就表示 `mouse.bird` 是 `undefined`。然後當我們使用點語法 `mouse.bird.size` 時，因為 `mouse.bird` 是 `undefined`，這也就變成了我們實際的語句是 `undefined.size`，而此行為是無效的，並會抛出一個錯誤 `Cannot read property "size" of undefined`。
+
+</p>
+</details>
+
+---
