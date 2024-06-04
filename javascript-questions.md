@@ -164,3 +164,37 @@ const mouse = {
 </details>
 
 ---
+
+###### 6. 將會輸出什麽內容？
+
+```javascript
+let c = { greeting: 'Hey!' }
+let d
+
+d = c
+c.greeting = 'Hello'
+console.log(d.greeting)
+```
+
+- A: `Hello`
+- B: `undefined`
+- C: `ReferenceError`
+- D: `TypeError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+在 JavaScript 中，當設定兩個物件彼此相等時，它們會經由*引用（reference）*進行互動。
+
+首先，變數 `c` 的值是一個物件。接下来，我們將 `d` 分配了一個和 `c` 物件相同的引用。
+
+<img src="https://i.imgur.com/ko5k0fs.png" width="200">
+
+因此當我們改變其中一個物件時，其實是改變了所有的物件的同一個引用的內容。
+
+</p>
+</details>
+
+---
