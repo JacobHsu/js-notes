@@ -198,3 +198,71 @@ console.log(d.greeting)
 </details>
 
 ---
+
+###### 7. 將會輸出什麽內容？
+
+```javascript
+let a = 3
+let b = new Number(3)
+let c = 3
+
+console.log(a == b)
+console.log(a === b)
+console.log(b === c)
+```
+
+- A: `true` `false` `true`
+- B: `false` `false` `true`
+- C: `true` `false` `false`
+- D: `false` `true` `true`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+`new Number()` 是一個内建的函式建構子。它雖然看起來像是個 number，但它實際上並非真正的 number：它有一堆額外的功能，而且它是一個物件。
+
+當我們使用 `==` 運算子的時候，它只會檢查兩者是否擁有有相同的*值*。因為它們的值都是 `3`，因此回傳 `true`。
+
+然後，當我們使用 `===` 運算子時，兩者的值以及*型別*都必須是相同的。`new Number()` 是一個物件型別而不是 number（一般型別），因此回傳 `false`。
+
+</p>
+</details>
+
+---
+
+###### 8. 將會輸出什麽內容？
+
+```javascript
+class Chameleon {
+  static colorChange(newColor) {
+    this.newColor = newColor
+    return this.newColor
+  }
+
+  constructor({ newColor = 'green' } = {}) {
+    this.newColor = newColor
+  }
+}
+
+const freddie = new Chameleon({ newColor: 'purple' })
+freddie.colorChange('orange')
+```
+
+- A: `orange`
+- B: `purple`
+- C: `green`
+- D: `TypeError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+`colorChange` 是一個靜態方法。靜態方法被設計爲只能被創造它們的建構子使用（也就是 `Chameleon` 中的 `constructor`），並且不能傳遞給實例。因為 `freddie` 是一個實例，而靜態方法不能被實例使用，因此會抛出 `TypeError` 錯誤。
+
+</p>
+</details>
+
+---
