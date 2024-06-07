@@ -266,3 +266,29 @@ freddie.colorChange('orange')
 </details>
 
 ---
+
+###### 9. 將會輸出什麽內容？
+
+```javascript
+let greeting
+greetign = {} // 手殘打錯變數名稱！
+console.log(greetign)
+```
+
+- A: `{}`
+- B: `ReferenceError: greetign is not defined`
+- C: `undefined`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+程式碼印出了一個物件，這是因為我們在全域物件上建立了一個空物件！當我們將 `greeting` 寫錯成 `greetign` 時，JS 解譯器實際上將它視爲 `global.greetign = {}`（或者在瀏覽器中視為 `window.greetign = {}`）。
+
+為了避免這個狀況，我們可以使用 `"use strict"`，來確保當你宣告變數時，必須賦值。
+
+</p>
+</details>
+
+---
