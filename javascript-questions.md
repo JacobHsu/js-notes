@@ -292,3 +292,73 @@ console.log(greetign)
 </details>
 
 ---
+
+###### 10. 當我們這麼做時，會發生什麼事？
+
+```javascript
+function bark() {
+  console.log('Woof!')
+}
+
+bark.animal = 'dog'
+```
+
+- A: 正常運作！
+- B: `SyntaxError`. 你不能透過這種方式在函式中新增屬性。
+- C: `undefined`
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+這在 JavaScript 中是可以的，因爲函式是物件！（除了基本型別之外其他都是物件）
+
+函式是一個特殊的物件，函式是一個擁有屬性的物件，屬性也可被使用、呼叫的。
+
+</p>
+</details>
+
+---
+
+###### 11. 將會輸出什麽內容？
+
+```javascript
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const member = new Person("Lydia", "Hallie");
+Person.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+}
+
+console.log(member.getFullName());
+```
+
+- A: `TypeError`
+- B: `SyntaxError`
+- C: `Lydia Hallie`
+- D: `undefined` `undefined`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+你可以為一般物件新增屬性，但建構函式（constructor）無法透過上面的方式來新增屬性。若你想一次性在所有實例上都新增某個屬性，要使用原型的方式。因此本例中，使用以下的方式：
+
+```js
+Person.prototype.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+}
+```
+
+這樣一來，`member.getFullName()` 就能有效。這樣做有什麼好處？假設我們真的能如題將這個方法新增到建構函式本身，並不是每個 `Person` 實例都需要這個方法，但每個實例卻仍然擁有該属性，代表著這將佔據每個實例的記憶體，造成大量的記憶體空間因此浪費掉了。相反，如果我們只將它新增在原型中，那麼它只存在記憶體中的一個位置，而所有實例都可以使用它！
+
+</p>
+</details>
+
+---
