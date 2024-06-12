@@ -362,3 +362,37 @@ Person.prototype.getFullName = function () {
 </details>
 
 ---
+
+###### 12. 將會輸出什麽內容？
+
+```javascript
+function Person(firstName, lastName) {
+  this.firstName = firstName
+  this.lastName = lastName
+}
+
+const lydia = new Person('Lydia', 'Hallie')
+const sarah = Person('Sarah', 'Smith')
+
+console.log(lydia)
+console.log(sarah)
+```
+
+- A: `Person {firstName: "Lydia", lastName: "Hallie"}` and `undefined`
+- B: `Person {firstName: "Lydia", lastName: "Hallie"}` and `Person {firstName: "Sarah", lastName: "Smith"}`
+- C: `Person {firstName: "Lydia", lastName: "Hallie"}` and `{}`
+- D:`Person {firstName: "Lydia", lastName: "Hallie"}` and `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+對 `sarah` 而言，我們沒有使用 `new` 關鍵字。當使用 `new` 時，`this` 引用我們建立的空物件。沒有使用 `new` 的時候，`this` 引用的是**全域物件**（global object）。
+
+我們會說 `this.firstName` 等於 `"Sarah"`，而 `this.lastName` 等於 `"Smith"`。實際上我們做的是，定義了 `global.firstName = 'Sarah'` 和 `global.lastName = 'Smith'`。而 `sarah` 本身是 `undefined`，因為 `Person` 這個函式本身並沒有回傳值。
+
+</p>
+</details>
+
+---
