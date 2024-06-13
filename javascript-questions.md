@@ -396,3 +396,24 @@ console.log(sarah)
 </details>
 
 ---
+
+###### 13. 事件傳播的三個階段分別是？
+
+- A: Target > Capturing > Bubbling
+- B: Bubbling > Target > Capturing
+- C: Target > Bubbling > Capturing
+- D: Capturing > Target > Bubbling
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+先捕獲，再冒泡！在**捕獲**（capturing）階段中，事件從祖先元素向下傳播到目標元素。當事件到達**目標**（target）元素後，**冒泡**（bubbling）才開始。
+
+<img src="https://i.imgur.com/N18oRgd.png" width="200">
+
+</p>
+</details>
+
+---
