@@ -417,3 +417,20 @@ console.log(sarah)
 </details>
 
 ---
+
+###### 14. 所有物件都有原型。
+
+- A: true
+- B: false
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+除了**基本物件**（base object，使用 `new` 關鍵字建立的物件）以外，所有物件都有原型。基本物件可以使用一些方法和属性，比如 `.toString`，這就是為什麼你可以使用內建的 JavaScript 方法！所有這類在原型上的方法都是可被使用的。雖然 JavaScript 不能直接在物件上找到這些方法，但 JavaScript 會沿著原型鍊找到它們，以便使用。
+
+</p>
+</details>
+
+---
