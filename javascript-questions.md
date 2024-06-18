@@ -434,3 +434,66 @@ console.log(sarah)
 </details>
 
 ---
+
+###### 15. 將會輸出什麽內容？
+
+```javascript
+function sum(a, b) {
+  return a + b
+}
+
+sum(1, '2')
+```
+
+- A: `NaN`
+- B: `TypeError`
+- C: `"12"`
+- D: `3`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+JavaScript 是一個**動態型別語言**：我們不指定變數的型別。值可以在你不知道的情况下自動轉換成另一種型別，稱為**隱含式轉型**（implicit type coercion）。**Coercion** 是指將一種型別轉換成另一種型別。
+
+在此範例中，JavaScript 將數字型別 `1` 轉換為字串型別，以便函式能回傳一個有意義的值。數字型別（`1`）和字串型別（`'2'`）相加的時候，該數字會被視為字串。我們也能連接不同的字串，比如 `"Hello" + "World"`，而此例是 `"1" + "2"`，它將回傳 `"12"`。
+
+</p>
+</details>
+
+###### 16. 將會輸出什麽內容？
+
+```javascript
+let number = 0;
+console.log(number++);
+console.log(++number);
+console.log(number);
+```
+
+- A: `1` `1` `2`
+- B: `1` `2` `2`
+- C: `0` `2` `2`
+- D: `0` `1` `2`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+一元運算子 `++` 加在變數後方：
+
+1. 回傳值 (這個值是 `0`)
+2. 新增值 (變數 `number` 的值現在是 `1`)
+
+一元運算子 `++` 加在變數前方：
+
+1. 新增值 (變數 `number` 的值現在是 `2`)
+2. 回傳值 (這個值是 `2`)
+
+因此答案是 `0 2 2`.
+
+</p>
+</details>
+
+---
