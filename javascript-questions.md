@@ -497,3 +497,34 @@ console.log(number);
 </details>
 
 ---
+
+###### 17. 將會輸出什麽內容？
+
+```javascript
+function getPersonInfo(one, two, three) {
+  console.log(one);
+  console.log(two);
+  console.log(three);
+}
+
+const person = 'Lydia';
+const age = 21;
+
+getPersonInfo`${person} is ${age} years old`;
+```
+
+- A: `"Lydia"` `21` `["", " is ", " years old"]`
+- B: `["", " is ", " years old"]` `"Lydia"` `21`
+- C: `"Lydia"` `["", " is ", " years old"]` `21`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+若你使用標籤樣板字面值（Tagged template literals），第一個參數的值永遠會是一個裝載字串的陣列，函式中的剩下的參數會取得表達式中傳進的變數（`person`、`age`）的值（`'Lydia'`、`21`）！
+
+</p>
+</details>
+
+---
