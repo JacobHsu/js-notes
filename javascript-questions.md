@@ -528,3 +528,39 @@ getPersonInfo`${person} is ${age} years old`;
 </details>
 
 ---
+
+###### 18. 將會輸出什麽內容？
+
+```javascript
+function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log('You are an adult!');
+  } else if (data == { age: 18 }) {
+    console.log('You are still an adult.');
+  } else {
+    console.log(`Hmm.. You don't have an age I guess`);
+  }
+}
+
+checkAge({ age: 18 });
+```
+
+- A: `You are an adult!`
+- B: `You are still an adult.`
+- C: `Hmm.. You don't have an age I guess`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+驗證相等，一般型別只比較「值」，物件型別則是比較他們的「參考」。JavaScript 會確認不同物件的參考是否指向同一個記憶體位置。
+
+題目中，我們比較的兩個物件擁有不同的記憶體位置：一個物件是作為參數傳遞的物件，它的記憶體位置與另一個拿來判斷是否相等的物件並不相同。
+
+這就是 `{ age: 18 } === { age: 18 }` 與 `{ age: 18 } == { age: 18 }` 會回傳 `false` 的原因。
+
+</p>
+</details>
+
+---
