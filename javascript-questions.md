@@ -564,3 +564,30 @@ checkAge({ age: 18 });
 </details>
 
 ---
+
+###### 19. 將會輸出什麽內容？
+
+```javascript
+function getAge(...args) {
+  console.log(typeof args);
+}
+
+getAge(21);
+```
+
+- A: `"number"`
+- B: `"array"`
+- C: `"object"`
+- D: `"NaN"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+其餘參數（`...args`）會蒐集傳進來剩下來未使用的參數，成為一個「陣列」。陣列的型別是「物件」，所以透過 `typeof args` 將會回傳該值的型別，將是 `"object"`。
+
+</p>
+</details>
+
+---
