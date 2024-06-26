@@ -643,3 +643,28 @@ const sum = eval('10*10+5');
 </details>
 
 ---
+
+###### 22. cool_secret 這個資料儲存在瀏覽器，存活時間有多久？
+
+```javascript
+sessionStorage.setItem('cool_secret', 123);
+```
+
+- A: 永遠都可以，資料不會不見。
+- B: 使用者關閉頁籤後，資料才會失效。
+- C: 使用者要關閉一整個瀏覽器，資料才會失效，單純關閉資料不會造成資料消失。
+- D: 使用者關閉電腦後。
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+儲存在 `sessionStorage` 的資料會在使用者「關閉頁籤」後消失。
+
+若是使用 `localStorage` 來儲存資料的話，資料則會永遠存在瀏覽器端，直到觸發了 `localStorage.clear()` 才可以清除資料。
+
+</p>
+</details>
+
+---
