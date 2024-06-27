@@ -668,3 +668,29 @@ sessionStorage.setItem('cool_secret', 123);
 </details>
 
 ---
+
+###### 23. 將會輸出什麽內容？
+
+```javascript
+var num = 8;
+var num = 10;
+
+console.log(num);
+```
+
+- A: `8`
+- B: `10`
+- C: `SyntaxError`
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+使用 `var` 關鍵字重複宣告的變數，該值會以最新賦予的值作為它的「值」。這件事情在 `let` or `const` 不會發生，因為這兩個關鍵字所宣告的變數作用域是塊級作用域（block-scoped）。
+
+</p>
+</details>
+
+---
