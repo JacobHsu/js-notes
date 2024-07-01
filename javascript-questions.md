@@ -723,3 +723,27 @@ set.has(1);
 </details>
 
 ---
+
+###### 25. 將會輸出什麽內容？
+
+```javascript
+const obj = { a: 'one', b: 'two', a: 'three' };
+console.log(obj);
+```
+
+- A: `{ a: "one", b: "two" }`
+- B: `{ b: "two", a: "three" }`
+- C: `{ a: "three", b: "two" }`
+- D: `SyntaxError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+若物件中的屬性有重複名稱者，第一個屬性會保持它的位置，但值會被最後一個重複屬性名稱的值給取代。
+
+</p>
+</details>
+
+---
