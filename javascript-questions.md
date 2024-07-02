@@ -747,3 +747,22 @@ console.log(obj);
 </details>
 
 ---
+
+###### 26. JavaScript 在全域執行環境為你做了兩件事：全域物件和 this 關鍵字。
+
+- A: true
+- B: false
+- C: it depends
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+基本执行上下文是全局执行上下文：它是代码中随处可访问的内容。
+基底的執行環境是全域的：代表它在程式碼中，可被隨處使用。
+
+</p>
+</details>
+
+---
