@@ -766,3 +766,29 @@ console.log(obj);
 </details>
 
 ---
+
+###### 27. 將會輸出什麽內容？
+
+```javascript
+for (let i = 1; i < 5; i++) {
+  if (i === 3) continue;
+  console.log(i);
+}
+```
+
+- A: `1` `2`
+- B: `1` `2` `3`
+- C: `1` `2` `4`
+- D: `1` `3` `4`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+當 `if` 條件成立時會回傳 `true`，執行 `continue` 語句，代表忽略本次迭代（`console.log(i)`）。
+
+</p>
+</details>
+
+---
