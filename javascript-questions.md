@@ -855,3 +855,56 @@ console.log(a[b]);
 </details>
 
 ---
+
+###### 30. 將會輸出什麽內容？
+
+```javascript
+const foo = () => console.log('First');
+const bar = () => setTimeout(() => console.log('Second'));
+const baz = () => console.log('Third');
+
+bar();
+foo();
+baz();
+```
+
+- A: `First` `Second` `Third`
+- B: `First` `Third` `Second`
+- C: `Second` `First` `Third`
+- D: `Second` `Third` `First`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+我們有一個 `setTimeout` 函式，首先呼叫它。然而，它的執行順序是最後執行的。
+
+因為在瀏覽器中，我們除了有執行引擎，還有一個 `WebAPI`。`WebAPI` 提供了 `setTimeout` 函式，也包含其他的，例如 DOM。
+
+在『callback』推送到 `WebAPI` 後，`setTimeout` 函式本身（不是回呼函式）將從堆疊（`stack`）中彈出。
+
+<img src="https://i.imgur.com/X5wsHOg.png" width="200">
+
+現在，`foo` 被呼叫，印出 `"First"`。
+
+<img src="https://i.imgur.com/Pvc0dGq.png" width="200">
+
+`foo` 從堆疊中彈出，`baz` 被呼叫，印出 `"Third"`。
+
+<img src="https://i.imgur.com/WhA2bCP.png" width="200">
+
+WebAPI 不能隨時向堆疊内新增内容。相反，它會將回呼函式彈到名爲『`queue`』的地方。
+
+<img src="https://i.imgur.com/NSnDZmU.png" width="200">
+
+這就是事件迴圈（`Event Loop`）的流程，了解**事件迴圈**堆疊與任務佇列的運作模式。如果堆疊是空的，它接受任務佇列上的第一个元素，推入堆疊中。
+
+<img src="https://i.imgur.com/uyiScAI.png" width="200">
+
+`bar` 被呼叫，印出 `"Second"`，然後它被彈出堆疊。
+
+</p>
+</details>
+
+---
