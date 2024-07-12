@@ -908,3 +908,33 @@ WebAPI 不能隨時向堆疊内新增内容。相反，它會將回呼函式彈�
 </details>
 
 ---
+
+###### 31. 點擊按鈕時，event.target 指的是哪個元件？
+
+```html
+<div onclick="console.log('first div')">
+  <div onclick="console.log('second div')">
+    <button onclick="console.log('button')">
+      Click!
+    </button>
+  </div>
+</div>
+```
+
+- A: 第一層的 `div`
+- B: 第二層的 `div`
+- C: `button` 本身
+- D: 一個包含此巢狀元件的陣列。
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+產生事件 (event) 的元件即為此事件的 target，您可以透過 `event.stopPropagation` 來停止事件的冒泡 (bubbling)
+
+</p>
+</details>
+
+---
+
