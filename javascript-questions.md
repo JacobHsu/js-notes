@@ -938,3 +938,31 @@ WebAPI 不能隨時向堆疊内新增内容。相反，它會將回呼函式彈�
 
 ---
 
+###### 32. 點擊標籤 p(paragraph) 時，將會輸出什麼內容？
+
+```html
+<div onclick="console.log('div')">
+  <p onclick="console.log('p')">
+    Click here!
+  </p>
+</div>
+```
+
+- A: `p` `div`
+- B: `div` `p`
+- C: `p`
+- D: `div`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+輸出內容是 `p` 及 `div`。在事件傳播 (event propagation) 期間，分為三個階段：捕獲 (capturing)，目標 (target) 和冒泡 (bubbling)。
+預設情況下，事件處理 (event handlers) 在冒泡階段執行（除非您將 useCapture 設置為 true)。它從巢狀元素的最深層向外層。
+
+</p>
+</details>
+
+---
+
