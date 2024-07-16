@@ -966,3 +966,34 @@ WebAPI 不能隨時向堆疊内新增内容。相反，它會將回呼函式彈�
 
 ---
 
+###### 33. 將會輸出什麽內容？
+
+```javascript
+const person = { name: 'Lydia' };
+
+function sayHi(age) {
+  return `${this.name} is ${age}`;
+}
+
+console.log(sayHi.call(person, 21));
+console.log(sayHi.bind(person, 21));
+```
+
+- A: `undefined is 21` `Lydia is 21`
+- B: `function` `function`
+- C: `Lydia is 21` `Lydia is 21`
+- D: `Lydia is 21` `function`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+通過 `.call` 及 `.bind`，我們可以將想要 `this` 關鍵字引用的物件傳遞給它。
+然而，`.call` 會 _立即執行_! `.bind.` 則是會回傳一份函式 (function) 的 _複製_ 且不會立即執行。
+
+</p>
+</details>
+
+---
+
