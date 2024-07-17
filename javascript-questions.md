@@ -997,3 +997,31 @@ console.log(sayHi.bind(person, 21));
 
 ---
 
+###### 34. 將會輸出什麽內容？
+
+```javascript
+function sayHi() {
+  return (() => 0)();
+}
+
+console.log(typeof sayHi());
+```
+
+- A: `"object"`
+- B: `"number"`
+- C: `"function"`
+- D: `"undefined"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+`sayHi` 函數會回傳立即執行函式表示式 (IIFE）的回傳值。該函數回傳類型為 `"number"` 的 `0`。
+FYI: JS 只有 7 種原生類型 (type) : `null`, `undefined`, `boolean`, `number`, `string`, `object`, `symbol`, 和 `bigint`. `"function"` 不是一種類型而是物件。
+
+</p>
+</details>
+
+---
+
