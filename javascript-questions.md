@@ -1025,3 +1025,41 @@ FYI: JS 只有 7 種原生類型 (type) : `null`, `undefined`, `boolean`, `numbe
 
 ---
 
+###### 35. 下列項目哪些是 falsy？
+
+```javascript
+0;
+new Number(0);
+('');
+(' ');
+new Boolean(false);
+undefined;
+```
+
+- A: `0`, `''`, `undefined`
+- B: `0`, `new Number(0)`, `''`, `new Boolean(false)`, `undefined`
+- C: `0`, `''`, `new Boolean(false)`, `undefined`
+- D: All of them are falsy
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+只有八個值是 falsy
+
+- `undefined`
+- `null`
+- `NaN`
+- `false`
+- `''` (空字串)
+- `0`
+- `-0`
+- `0n` (BigInt(0))
+
+函式建構式 (Function constructors) 如 `new Number` 和 `new Boolean` 都為 truthy。
+
+</p>
+</details>
+
+---
