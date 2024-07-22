@@ -1063,3 +1063,28 @@ undefined;
 </details>
 
 ---
+
+###### 36. 將會輸出什麽內容？
+
+```javascript
+console.log(typeof typeof 1);
+```
+
+- A: `"number"`
+- B: `"string"`
+- C: `"object"`
+- D: `"undefined"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+`typeof 1` 回傳 `"number"`
+`typeof "number"` 回傳 `"string"`
+
+</p>
+</details>
+
+---
+
