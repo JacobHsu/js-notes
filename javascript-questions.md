@@ -1088,3 +1088,30 @@ console.log(typeof typeof 1);
 
 ---
 
+###### 37. 將會輸出什麽內容？
+
+```javascript
+const numbers = [1, 2, 3];
+numbers[10] = 11;
+console.log(numbers);
+```
+
+- A: `[1, 2, 3, 7 x null, 11]`
+- B: `[1, 2, 3, 11]`
+- C: `[1, 2, 3, 7 x empty, 11]`
+- D: `SyntaxError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+當您設置的元素其位置大過陣列長度時，JavaScript 會建立一個叫做 "empty slots" 的物件，它們的值實際上為 `undefined`。
+
+但您會看到類似的輸出內容 : `[1, 2, 3, 7 x empty, 11]`。實際執行環境會使其輸出內容略微不同 (瀏覽器，node... 等)
+
+</p>
+</details>
+
+---
+
