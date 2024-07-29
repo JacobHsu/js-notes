@@ -1115,3 +1115,39 @@ console.log(numbers);
 
 ---
 
+###### 38. 將會輸出什麽內容？
+
+```javascript
+(() => {
+  let x, y;
+  try {
+    throw new Error();
+  } catch (x) {
+    (x = 1), (y = 2);
+    console.log(x);
+  }
+  console.log(x);
+  console.log(y);
+})();
+```
+
+- A: `1` `undefined` `2`
+- B: `undefined` `undefined` `undefined`
+- C: `1` `1` `2`
+- D: `1` `undefined` `undefined`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+程式中的 `catch` 區塊捕獲了一個例外情況且賦殖予 argument `x`。這個 `x` 是在區塊內產生的，其有效範圍只在區塊內 (block-scoped)，它跟 `console.log` 中所傳入的 `x` 並不是同一個。
+
+接著我們將此區塊變數 `x` 設置為等於 `1`，並設置變數 `y` 的值，現在我們 console.log 區塊變數 `x`，無意外地它輸出 `1`。
+
+而在 `catch` 區塊之外的 `x` 仍然是 `undefined` 且 `y` 是 `2`。因此當我們想在 `catch` 區塊之外使用 `console.log（x)` 時，它回傳 `undefined`，而 `y` 回傳 `2`。
+
+</p>
+</details>
+
+---
