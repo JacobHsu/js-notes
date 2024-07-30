@@ -1151,3 +1151,29 @@ console.log(numbers);
 </details>
 
 ---
+
+###### 39. 關於 JavaScript 的敘述何者正確？
+
+- A: JavaScript 的世界中不是 primitive 就是 object
+- B: JavaScript 的世界中不是 function 就是 object
+- C: JavaScript 的世界中只有 object
+- D: JavaScript 的世界中不是 number 就是 object
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+JavaScript 只有 primitive types 和 objects.
+
+而 Primitive types 包含 `boolean`, `null`, `undefined`, `bigint`, `number`, `string`, 和 `symbol`.
+
+Primitive 不同於 object 的是它沒有任何的屬性 (properties) 和方法 (methods); 沒有方法的情況下為何 `'foo'.toUpperCase()` (string) 是輸出 `'FOO'` 而不是 `TypeError` ?
+這是因為當您嘗試訪問 primitive types (例如字串) 的屬性或方法時，JavaScript 會使用其中一個 wrapper classes 包裝該 primitive type。
+
+例如使用了 `String` 包裝 primitive type `string`，接著在 expression 被 evaluates 後拋棄該包裝。所有 primitives 除了 `null` 和 `undefined` 外都是遵循此行為。
+
+</p>
+</details>
+
+---
