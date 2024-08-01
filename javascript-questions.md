@@ -1207,3 +1207,32 @@ Primitive 不同於 object 的是它沒有任何的屬性 (properties) 和方法
 </details>
 
 ---
+
+###### 41. 將會輸出什麽內容？
+
+```javascript
+!!null;
+!!'';
+!!1;
+```
+
+- A: `false` `true` `false`
+- B: `false` `false` `true`
+- C: `false` `true` `true`
+- D: `true` `true` `false`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+`null` 是 falsy. `!null` 回傳 `true`. `!true` 回傳 `false`.
+
+`""` 是 falsy. `!""` 回傳 `true`. `!true` 回傳 `false`.
+
+`1` 是 truthy. `!1` 回傳 `false`. `!false` 回傳 `true`.
+
+</p>
+</details>
+
+---
