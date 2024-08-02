@@ -1236,3 +1236,26 @@ Primitive 不同於 object 的是它沒有任何的屬性 (properties) 和方法
 </details>
 
 ---
+
+###### 42. 在瀏覽器中 `setInterval` 方法會回傳什麼？
+
+```javascript
+setInterval(() => console.log('Hi'), 1000);
+```
+
+- A: 一個唯一的 id
+- B: 指定的毫秒數
+- C: 被傳遞的函式
+- D: `undefined`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+會回傳一個唯一的 id，並可用於 `clearInterval()` 以清除該 interval。
+
+</p>
+</details>
+
+---
