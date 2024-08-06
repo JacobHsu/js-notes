@@ -1259,3 +1259,26 @@ setInterval(() => console.log('Hi'), 1000);
 </details>
 
 ---
+
+###### 43. 將會回傳何種結果？
+
+```javascript
+[...'Lydia'];
+```
+
+- A: `["L", "y", "d", "i", "a"]`
+- B: `["Lydia"]`
+- C: `[[], "Lydia"]`
+- D: `[["L", "y", "d", "i", "a"]]`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+字串 (string) 類別是可以被迭代的 (iterable)，展開運算子 (spread operator) 將可迭代的字元 (character) 映射 (map) 置一個元素 (element) 上。
+
+</p>
+</details>
+
+---
