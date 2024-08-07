@@ -1282,3 +1282,41 @@ setInterval(() => console.log('Hi'), 1000);
 </details>
 
 ---
+
+###### 44. 將會輸出什麽內容？
+
+```javascript
+function* generator(i) {
+  yield i;
+  yield i * 2;
+}
+
+const gen = generator(10);
+
+console.log(gen.next().value);
+console.log(gen.next().value);
+```
+
+- A: `[0, 10], [10, 20]`
+- B: `20, 20`
+- C: `10, 20`
+- D: `0, 10 and 10, 20`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+一般函式不能在被呼叫後中途停止。但是，generator 可以在中途 "停止" 且之後可以從停止的位置繼續執行。
+每當一個 generator 函式遇到一個 `yield` 關鍵字時，該函式就會產生其後指定的值。請注意，在這種情況下，generator 函式不是 _return_ 值，而是 _yields_ 值。
+
+首先，我們使用等於 "10" 的 "i" 初始化 generator 函式。我們使用 "next（)" 方法呼叫 generator 函式。第一次呼叫 generator 函式時， "i" 等於 "10"。
+它遇到第一個 `yield` 關鍵字：它產生 `i` 的值。現在，generator 已 "暫停"，並且記錄了 "10"。
+
+然後，我們使用 `next（）` 方法再次呼叫該函式。它將從先前停止的地方繼續，仍然是 "i" 等於 "10"。現在，它遇到下一個 `yield` 關鍵字，並產生 `i * 2`。 
+"i" 等於 "10"，因此回傳 "10 * 2"，即 "20"。故結果為 10、20。
+
+</p>
+</details>
+
+---
