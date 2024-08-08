@@ -1320,3 +1320,36 @@ console.log(gen.next().value);
 </details>
 
 ---
+
+###### 45. 將會回傳何種結果？
+
+```javascript
+const firstPromise = new Promise((res, rej) => {
+  setTimeout(res, 500, 'one');
+});
+
+const secondPromise = new Promise((res, rej) => {
+  setTimeout(res, 100, 'two');
+});
+
+Promise.race([firstPromise, secondPromise]).then(res => console.log(res));
+```
+
+- A: `"one"`
+- B: `"two"`
+- C: `"two" "one"`
+- D: `"one" "two"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+當我們向 Promise.race 方法傳遞多個 promise 時，它將 resolves / rejects _最先的_ promise。
+在 setTimeout 方法中，我們傳遞了一個計時器：第一個 promise（firstPromise）為 500 毫秒，第二個 promise（secondPromise）為 100 毫秒。這意味著 "secondPromise" 將先用 "two" 的值進行 resolves。現在，`res` 擁有 'two' 的值且該值被 console.log。  
+
+`Promise.race`用於競爭多個 Promise，看哪個先完成。
+</p>
+</details>
+
+---
