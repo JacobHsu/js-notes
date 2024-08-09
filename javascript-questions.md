@@ -1353,3 +1353,44 @@ Promise.race([firstPromise, secondPromise]).then(res => console.log(res));
 </details>
 
 ---
+
+###### 46. 將會輸出什麽內容？
+
+```javascript
+let person = { name: 'Lydia' };
+const members = [person];
+person = null;
+
+console.log(members);
+```
+
+- A: `null`
+- B: `[null]`
+- C: `[{}]`
+- D: `[{ name: "Lydia" }]`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+首先，我們宣告一個物件變數 `person` 包含 `name` 屬性以及值 `Lydia`。
+
+<img src="https://i.imgur.com/TML1MbS.png" width="200">
+
+接著我們宣告另一個陣列變數 `members`。我們將該陣列的第一個元素設置等於 `person` 變數的值。
+當我們將它們設置為相等時，物件透過 _reference_ 互相關聯。當我們將一個物件變數的 reference 賦值給另一個變數時，實際上我們是 _複製_ 該 reference (它們沒有 _相同_ 的 reference !)  
+
+<img src="https://i.imgur.com/FSG5K3F.png" width="300">
+
+接著我們將變數 `person` 賦予 `null`。
+
+<img src="https://i.imgur.com/sYjcsMT.png" width="300">
+
+我們僅修改變數 `person` 的值，並無修改陣列中的第一個元素。
+基於該元素有份不同的 reference (一份複製的)，故 `members` 陣列中第一位元素仍保有對物件的指向，於是當我們 console.log `members` 陣列時，輸出內容為物件。
+
+</p>
+</details>
+
+---
