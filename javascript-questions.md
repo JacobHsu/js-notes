@@ -1394,3 +1394,34 @@ console.log(members);
 </details>
 
 ---
+
+###### 47. 將會輸出什麽內容？
+
+```javascript
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
+
+for (const item in person) {
+  console.log(item);
+}
+```
+
+- A: `{ name: "Lydia" }, { age: 21 }`
+- B: `"name", "age"`
+- C: `"Lydia", 21`
+- D: `["name", "Lydia"], ["age", 21]`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+通過 `for-in` 循環，我們可以遍歷物件的鍵，在這個題目中的鍵是 `name` 和 `age`。在內部，物件鍵是字串 (strings)（如果它們不是 Symbol）。
+在每次循環中，我們將 `item` 的值設置為等於其迭代的當前鍵。第一輪循環中，`item` 等於 `name`，並輸出內容。接著，`item` 等於 `age`，並輸出內容。
+
+</p>
+</details>
+
+---
