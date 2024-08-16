@@ -1509,3 +1509,42 @@ const num = parseInt('7*6', 10);
 </details>
 
 ---
+
+###### 51. 將會輸出什麽內容？
+
+```javascript
+function getInfo(member, year) {
+  member.name = 'Lydia';
+  year = '1998';
+}
+
+const person = { name: 'Sarah' };
+const birthYear = '1997';
+
+getInfo(person, birthYear);
+
+console.log(person, birthYear);
+```
+
+- A: `{ name: "Lydia" }, "1997"`
+- B: `{ name: "Sarah" }, "1998"`
+- C: `{ name: "Lydia" }, "1998"`
+- D: `{ name: "Sarah" }, "1997"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+參數是透過 _value_ 傳遞，除非它們是一個物件 (object)，物件則由透過 _reference_ 傳遞。`birthYear` 是透過值傳遞的，因為它是字串不是物件。當我們按值傳遞參數時，將建立該值的 _copy_ (請參閱問題 46）。
+
+變數 `birthYear` 具有對值 `1997` 的 reference。參數 `year` 也有對值 `1997` 的 reference，但與變數 `birthYear` 所 reference 的不同。
+因此當我們通過將 `year` 設置為等於 `1998` 來更新 `year` 的值時，我們僅更新了 `year` 的值。`birthYear` 仍然等於 `"1997"`。
+
+`person` 的值是一個物件。參數 `member` 具有（複製的）reference 指向 _相同_ 物件。
+因此當我們修改物件 `member` 的屬性時，`person` 的值也會被修改，因為它們都 reference 了相同的物件。`person` 的 `name` 屬性現在等於值 `"Lydia"`。
+
+</p>
+</details>
+
+---
