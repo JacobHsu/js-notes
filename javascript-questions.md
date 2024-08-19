@@ -1480,30 +1480,29 @@ const num = parseInt('7*6', 10);
 
 ---
 
-###### 40. 將會輸出什麽內容？
+###### 50. 將會輸出什麽內容？
 
 ```javascript
-[[0, 1], [2, 3]].reduce(
-  (acc, cur) => {
-    return acc.concat(cur);
-  },
-  [1, 2],
-);
+[1, 2, 3].map(num => {
+  if (typeof num === 'number') return;
+  return num * 2;
+});
 ```
 
-- A: `[0, 1, 2, 3, 1, 2]`
-- B: `[6, 1, 2]`
-- C: `[1, 2, 0, 1, 2, 3]`
-- D: `[1, 2, 6]`
+- A: `[]`
+- B: `[null, null, null]`
+- C: `[undefined, undefined, undefined]`
+- D: `[ 3 x empty ]`
 
 <details><summary><b>答案</b></summary>
 <p>
 
 #### 答案：C
 
-`[1, 2]` 為初始值，同時也是第一個 `acc`。在第一輪中，`acc` 是 `[1,2]` 且 `cur` 是 `[0, 1]`，兩陣列連接後的結果是 `[1, 2, 0, 1]`。
+當對陣列做映射 (map) 時，`num` 的值等同於它當前正在循環的元素。在這種情況中元素均為 numbers，所以條件式 `typeof num === "number"` 會回傳 `true` 的值。
+map 函式會建立一個新陣列，並插入該函式回傳的值。
 
-接著 `[1, 2, 0, 1]` 是 `acc` 且 `[2, 3]` 是 `cur`，兩陣列連接後的結果是 `[1, 2, 0, 1, 2, 3]`。
+但是我們不回傳任何值。當我們不從函式回傳值時，函式將回傳 `undefined`。由於陣列中的每個元素都會呼叫該函式，因此對於每個元素，我們都回傳 `undefined`。
 
 </p>
 </details>
