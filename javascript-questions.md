@@ -1547,3 +1547,43 @@ console.log(person, birthYear);
 </details>
 
 ---
+
+###### 52. 將會輸出什麽內容？
+
+```javascript
+function greeting() {
+  throw 'Hello world!';
+}
+
+function sayHi() {
+  try {
+    const data = greeting();
+    console.log('It worked!', data);
+  } catch (e) {
+    console.log('Oh no an error:', e);
+  }
+}
+
+sayHi();
+```
+
+- A: `It worked! Hello world!`
+- B: `Oh no an error: undefined`
+- C: `SyntaxError: can only throw Error objects`
+- D: `Oh no an error: Hello world!`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+使用 `throw` 語句，我們可以建立自定義的錯誤。使用此語句，您可以觸發例外 (exception)。例外可以是 `<b>string</ b>`，`<b>number</ b>`，`<b>boolean</ b>` 或 `<b>object</ b>`。 
+在這種情況下，我們的例外是字串 `Hello world`。
+
+通過 `catch` 語句，我們可以指定如果在 `try` 的程式區塊中拋出例外時該怎麼辦。例如拋出例外：字串 `'Hello world'`。 
+現在，`e` 等於我們記錄的字串。因此輸出結果將會是 `'Oh an error: Hello world'`。
+
+</p>
+</details>
+
+---
