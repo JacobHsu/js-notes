@@ -1587,3 +1587,32 @@ sayHi();
 </details>
 
 ---
+
+###### 53. 將會輸出什麽內容？
+
+```javascript
+function Car() {
+  this.make = 'Lamborghini';
+  return { make: 'Maserati' };
+}
+
+const myCar = new Car();
+console.log(myCar.make);
+```
+
+- A: `"Lamborghini"`
+- B: `"Maserati"`
+- C: `ReferenceError`
+- D: `TypeError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+當您回傳屬性 (property) 時，該屬性的值等於 _returned_ 的值，而不是在函式建構式 (constructor function) 中設置的值。我們回傳字串 `Maserati`，因此 `myCar.make` 等於 `Maserati`。
+
+</p>
+</details>
+
+---
