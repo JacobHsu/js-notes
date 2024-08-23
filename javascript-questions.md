@@ -1616,3 +1616,44 @@ console.log(myCar.make);
 </details>
 
 ---
+
+###### 54. 將會輸出什麽內容？
+
+```javascript
+(() => {
+  let x = (y = 10);
+})();
+
+console.log(typeof x);
+console.log(typeof y);
+```
+
+- A: `"undefined", "number"`
+- B: `"number", "number"`
+- C: `"object", "number"`
+- D: `"number", "undefined"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+`let x = y = 10;` 實際上是 shorthand for:
+
+```javascript
+y = 10;
+let x = y;
+```
+
+當我們將 `y `設置為等於 `10` 時，我們實際上將屬性 `y` 加入到 global object 中（瀏覽器中的 `window`，Node 中的 `global`）。現在，瀏覽器中 `window.y` 現在等於 `10`。
+
+接著我們宣告一個變數 `x`，並將其值賦予為 `y`，即 `10`。用` let` 關鍵字宣告的變數是 _block scoped_，它們僅在宣告它們的區塊中定義；另外此案例的函示是，立即函示表達式（IIFE）。
+當我們使用 `typeof` 運算子時，`x` 並未被定義：我們試圖在宣告它的區塊外訪問 `x`。這將獲得 `x` 並未被定義的結果。未分配值或未宣告的值的類型為 `"undefined"`。`console.log(typeof x)` 回傳 `"undefined"`。
+
+但是，當將 `y` 設置為 `10` 時，我們建立了 global variable `y`。在我們程式中的任何位置均可訪問此值。
+`y` 被定義，並且為類型 `number` 的值。因此 `console.log（typeof y` 回傳 `"number"`。
+
+</p>
+</details>
+
+---
