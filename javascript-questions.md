@@ -1657,3 +1657,45 @@ let x = y;
 </details>
 
 ---
+
+###### 55. 將會輸出什麽內容？
+
+```javascript
+class Dog {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+Dog.prototype.bark = function() {
+  console.log(`Woof I am ${this.name}`);
+};
+
+const pet = new Dog('Mara');
+
+pet.bark();
+
+delete Dog.prototype.bark;
+
+pet.bark();
+```
+
+- A: `"Woof I am Mara"`, `TypeError`
+- B: `"Woof I am Mara"`, `"Woof I am Mara"`
+- C: `"Woof I am Mara"`, `undefined`
+- D: `TypeError`, `TypeError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+透過 `delete` 關鍵字，我們可以從物件中刪除它的屬性。同樣適用在原型 (prototype)。通過刪除原型上的屬性，該屬性在原型鏈中將不可再被使用。
+在這個案例中，`bark` 函式在 `delete Dog.prototype.bark` 之後的原型上不再可用，但是我們仍然嘗試訪問它。
+
+因此當我們嘗試呼叫不是函式的東西時，程式將拋出 `TypeError`。在這個案例中，將為 `TypeError: pet.bark is not a function`，因為 `pet.bark` 是 `undefined`。
+
+</p>
+</details>
+
+---
