@@ -1726,3 +1726,39 @@ console.log(set);
 </details>
 
 ---
+
+###### 57. 將會輸出什麽內容？
+
+```javascript
+// counter.js
+let counter = 10;
+export default counter;
+```
+
+```javascript
+// index.js
+import myCounter from './counter';
+
+myCounter += 1;
+
+console.log(myCounter);
+```
+
+- A: `10`
+- B: `11`
+- C: `Error`
+- D: `NaN`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+被引用 (imported) 的模組 (module) 是 _唯讀_ 的：您無法修改被引用模組中項目，只有輸出 (export) 該項目的模組可以更改它的值。
+
+因此當我們嘗試增加 `myCounter` 的值時，他將拋出錯誤：`myCounter` is read-only and cannot be modified。
+
+</p>
+</details>
+
+---
