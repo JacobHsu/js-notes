@@ -1762,3 +1762,32 @@ console.log(myCounter);
 </details>
 
 ---
+
+###### 58. 將會輸出什麽內容？
+
+```javascript
+const name = 'Lydia';
+age = 21;
+
+console.log(delete name);
+console.log(delete age);
+```
+
+- A: `false`, `true`
+- B: `"Lydia"`, `21`
+- C: `true`, `true`
+- D: `undefined`, `undefined`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+`delete` 運算子會回傳一個布林值：成功刪除物件的情況下會回傳 `true`，反之則為 `false`。但是經由 `var`，`const` 或是 `let` 關鍵字所宣告的變數是無法使用 `delete` 運算子刪除的。
+
+此處，`name` 無法成功刪除且會回傳 `false`，因為它是經由 `const` 所宣告。當我們宣告 `age` 的值為 `21` 時，實際上我們做的是將一個名為 `age` 的屬性為添加到了全球物件中，您可以透過 `delete` 來刪除物件中的屬性，因此您也能刪除全球物件中的屬性，故將回傳 `true`。
+
+</p>
+</details>
+
+---
