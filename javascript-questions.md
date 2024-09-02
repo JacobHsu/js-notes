@@ -1791,3 +1791,45 @@ console.log(delete age);
 </details>
 
 ---
+
+###### 59. 將會輸出什麽內容？
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const [y] = numbers;
+
+console.log(y);
+```
+
+- A: `[[1, 2, 3, 4, 5]]`
+- B: `[1, 2, 3, 4, 5]`
+- C: `1`
+- D: `[1]`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+我們可以通過解構 (destructuring) 從陣列或物件的屬性中獲得值。例如：
+
+```javascript
+[a, b] = [1, 2];
+```
+
+<img src="https://i.imgur.com/ADFpVop.png" width="200">
+
+a 的值現在為 `1` 且 b 的值現在為`2`。我們針對此問題所做的動作為：
+
+```javascript
+[y] = [1, 2, 3, 4, 5];
+```
+
+<img src="https://i.imgur.com/NzGkMNk.png" width="200">
+
+這代表著 `y` 的值等同於陣列中第一個元素的值，即為 `1`。因此我們執行 `console.log(y)` 時， `1` 將被輸出。
+
+</p>
+</details>
+
+---
