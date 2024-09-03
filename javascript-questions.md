@@ -1833,3 +1833,30 @@ a 的值現在為 `1` 且 b 的值現在為`2`。我們針對此問題所做的�
 </details>
 
 ---
+
+###### 60. 將會輸出什麽內容？
+
+```javascript
+const user = { name: 'Lydia', age: 21 };
+const admin = { admin: true, ...user };
+
+console.log(admin);
+```
+
+- A: `{ admin: true, user: { name: "Lydia", age: 21 } }`
+- B: `{ admin: true, name: "Lydia", age: 21 }`
+- C: `{ admin: true, user: ["Lydia", 21] }`
+- D: `{ admin: true }`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+使用 spread 運算子可以合併物件 (`...`)。它使您可以建立一個物件的鍵/值的複製，並將其添加到另一物件中。
+在這裡我們建立了 `user` 物件的複製並將其添加至 `admin` 物件。因此將輸出 `{ admin: true, name: "Lydia", age: 21 }`。
+
+</p>
+</details>
+
+---
