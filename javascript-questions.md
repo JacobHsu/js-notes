@@ -1860,3 +1860,35 @@ console.log(admin);
 </details>
 
 ---
+
+###### 61. 將會輸出什麽內容？
+
+```javascript
+const person = { name: 'Lydia' };
+
+Object.defineProperty(person, 'age', { value: 21 });
+
+console.log(person);
+console.log(Object.keys(person));
+```
+
+- A: `{ name: "Lydia", age: 21 }`, `["name", "age"]`
+- B: `{ name: "Lydia", age: 21 }`, `["name"]`
+- C: `{ name: "Lydia"}`, `["name", "age"]`
+- D: `{ name: "Lydia"}`, `["age"]`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+透過 `defineProperty`，我們可以對物件增加新的屬性或是修改已經存在的屬性。當我們使用 `defineProperty` 增加物件的屬性時，它們被預設為 _不可 enumerable_。
+ `Object.keys` 方法僅回傳物件中所有 _可 enumerable_ 的屬性名稱，這個案例中只有 `"name"`。
+
+預設下，使用 `defineProperty `方法增加的屬性是不可變的。但您可以覆蓋這個行為透過 `writable`，`configurable` 及 `enumerable` 屬性。
+於是，`defineProperty` 方法可以使您對要增加到物件的屬性進行更多的控制。
+
+</p>
+</details>
+
+---
