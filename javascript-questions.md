@@ -1892,3 +1892,38 @@ console.log(Object.keys(person));
 </details>
 
 ---
+
+###### 62. 將會輸出什麽內容？
+
+```javascript
+const settings = {
+  username: 'lydiahallie',
+  level: 19,
+  health: 90,
+};
+
+const data = JSON.stringify(settings, ['level', 'health']);
+console.log(data);
+```
+
+- A: `"{"level":19, "health":90}"`
+- B: `"{"username": "lydiahallie"}"`
+- C: `"["level", "health"]"`
+- D: `"{"username": "lydiahallie", "level":19, "health":90}"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+`JSON.stringify` 的第二個參數是 _替換者 (replacer)_，替換者可以是函式，也可以是陣列，並允許您控制值要如何獲怎麼串化 (stringified)。
+
+如果替換者是 _陣列_，僅將陣列中包含的屬性名稱加到 JSON 字串中。
+此案例中，僅有 `"level"` and `"health"` 被包含，`"username"` 沒有被包含在內，因此 `data` 的值將為 `"{"level":19, "health":90}"`。
+
+如果替換者是 _函式_，在要字串化的每個物件屬性上將會呼叫此函式。從此函式回傳的值將是加到 JSON 字串中的屬性的值。如果值為 `undefined`，則此屬性從 JSON 字串中排除。
+
+</p>
+</details>
+
+---
