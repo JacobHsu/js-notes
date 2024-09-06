@@ -1927,3 +1927,39 @@ console.log(data);
 </details>
 
 ---
+
+###### 63. 將會輸出什麽內容？
+
+```javascript
+let num = 10;
+
+const increaseNumber = () => num++;
+const increasePassedNumber = number => number++;
+
+const num1 = increaseNumber();
+const num2 = increasePassedNumber(num1);
+
+console.log(num1);
+console.log(num2);
+```
+
+- A: `10`, `10`
+- B: `10`, `11`
+- C: `11`, `11`
+- D: `11`, `12`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+單元運算子 `++` 首先 _回傳_ 操作數的值，然後 _遞增_ 操作數的值。`num1` 的值是 `10`，因為 `increaseNumber`  函式首先回傳 `num` 的值，即 `10`，之後才遞增 `num` 的值。
+
+`num2` 是 `10`，因為我們將 `num1` 傳遞給了 `increasePassedNumber`。`number` 等於 `10`（`num1` 的值。同樣，單元運算子 `++` 首先 _回傳_ 操作數的值，然後 _遞增_ 操作數的值。
+`number` 的值是 `10`，因此 `num2` 等於 `10`。
+
+</p>
+</details>
+
+---
+
