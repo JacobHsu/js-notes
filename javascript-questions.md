@@ -1963,3 +1963,40 @@ console.log(num2);
 
 ---
 
+###### 64. 將會輸出什麽內容？
+
+```javascript
+const value = { number: 10 };
+
+const multiply = (x = { ...value }) => {
+  console.log((x.number *= 2));
+};
+
+multiply();
+multiply();
+multiply(value);
+multiply(value);
+```
+
+- A: `20`, `40`, `80`, `160`
+- B: `20`, `40`, `20`, `40`
+- C: `20`, `20`, `20`, `40`
+- D: `NaN`, `NaN`, `20`, `40`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+在 ES6 中，我們可以使用預設值初始化參數。如果沒有其他值傳遞給該函式或是傳入的參數是 `undefined`，則該參數的值為預設值。此案例中，我們將 `value` 物件的屬性擴展到一個新物件中，因此 `x` 具有預設值 `{number：10}`。
+
+預設值是在 _呼叫_ 時被 evaluated。每次呼叫該函式時，都會建立一個 _新_ 物件。我們在沒有傳遞值的情況下呼叫了 `multiply` 函式兩次：`x` 的預設值是 `{{number：10}`。因此，我們輸出該數字的相乘值，即 `20`。
+
+第三次呼叫時，我們確實傳遞了一個參數：名為 `value` 的物件。`*=` 運算子實際上是 `x.number = x.number * 2` 的簡寫：因此我們修改了 `x.number` 的值，並記錄相乘後的值 `20`。
+
+第四次，我們再次傳遞名為 `value` 的物件。`x.number` 先前已修改為 `20`，因此 `x.number * = 2` 為 `40`。
+
+</p>
+</details>
+
+---
