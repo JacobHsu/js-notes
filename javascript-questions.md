@@ -2000,3 +2000,36 @@ multiply(value);
 </details>
 
 ---
+
+###### 65. 將會輸出什麽內容？
+
+```javascript
+[1, 2, 3, 4].reduce((x, y) => console.log(x, y));
+```
+
+- A: `1` `2` and `3` `3` and `6` `4`
+- B: `1` `2` and `2` `3` and `3` `4`
+- C: `1` `undefined` and `2` `undefined` and `3` `undefined` and `4` `undefined`
+- D: `1` `2` and `undefined` `3` and `undefined` `4`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+`reduce` 方法接收的第一個參數是 _累加器 (accumulator)_，在這種情況下是 `x`。第二個參數是 _current value_ `y`。使用 `reduce` 方法，我們對陣列中的每個元素執行一個 callback 函式，並在最終回一個值。
+
+在此示例中，我們不回傳任何值，僅記錄了累加器的值和當前值。
+
+累加器的值等於 callback 函式先前回傳的值。如果沒有 `initialValue` 參數傳遞給 `reduce` 方法，則累加器的初始值將會等於第一個元素。
+
+在第一個呼叫中，累加器（`x`）為`1`，當前值（`y`）為`2`。我們不從 callback 函式回傳，而是輸出累加器和當前值：`1` 和 `2`。
+
+如果您不從 callback 函式回傳值，則它將回傳 `undefined`。在下一次呼叫時，累加器為 `undefined`，當前值為 `3`。於是 `undefined` 和 `3` 被輸出。
+
+在第四次呼叫中，我們再次不從 callback 函式回傳。累加器再次為 `undefined`，當前值為 `4`。於是 `undefined` 和 `4` 被輸出。
+
+</p>
+</details>
+  
+---
