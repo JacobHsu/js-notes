@@ -2087,3 +2087,35 @@ class Labrador extends Dog {
 </details>
 
 ---
+
+###### 67. 將會輸出什麽內容？
+
+```javascript
+// index.js
+console.log('running index.js');
+import { sum } from './sum.js';
+console.log(sum(1, 2));
+
+// sum.js
+console.log('running sum.js');
+export const sum = (a, b) => a + b;
+```
+
+- A: `running index.js`, `running sum.js`, `3`
+- B: `running sum.js`, `running index.js`, `3`
+- C: `running sum.js`, `3`, `running index.js`
+- D: `running index.js`, `undefined`, `running sum.js`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+`import` 命令是 _編譯階段_ 執行的。這代表被引入的模組會優先執行，而引入模組的檔案會 _之後執行_。
+
+這是 `CommonJS` 中 `require()` 和 `import` 之間的區別！使用 `require()`，您可以在執行程式時根據需要戴入依賴的項目。如果我們使用 `require` 而不是 `import` 來執行此題，結果將會依 `running index.js`，`running sum.js`，`3` 的順序輸出。
+
+</p>
+</details>
+
+---
