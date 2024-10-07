@@ -2393,3 +2393,36 @@ console.log(name);
 </details>
 
 ---
+
+###### 77. 以下是純函數嗎？
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+```
+
+- A: Yes
+- B: No
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+純函數一種若輸入參數相同，則永遠會得到相同輸出的函數。
+
+在特定情況下，即使輸入相同參數，也不能得到相同的回傳值：
+
+<pre>
+var a = b = {}
+a[Symbol.toPrimitive] = b[Symbol.toPrimitive] = () => Math.random()
+sum(a, b) // Uncertain
+</pre>
+
+所以它不是純函數。
+
+</p>
+</details>
+
+---
