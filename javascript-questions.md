@@ -2426,3 +2426,52 @@ sum(a, b) // Uncertain
 </details>
 
 ---
+
+###### 78. 將會輸出什麽內容？
+
+```javascript
+const add = () => {
+  const cache = {};
+  return num => {
+    if (num in cache) {
+      return `From cache! ${cache[num]}`;
+    } else {
+      const result = num + 10;
+      cache[num] = result;
+      return `Calculated! ${result}`;
+    }
+  };
+};
+
+const addFunction = add();
+console.log(addFunction(10));
+console.log(addFunction(10));
+console.log(addFunction(5 * 2));
+```
+
+- A: `Calculated! 20` `Calculated! 20` `Calculated! 20`
+- B: `Calculated! 20` `From cache! 20` `Calculated! 20`
+- C: `Calculated! 20` `From cache! 20` `From cache! 20`
+- D: `Calculated! 20` `From cache! 20` `Error`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+`add`函數是一個記憶函數。通過記憶化，我們可以暫存函數的結果，以加快其執行速度。上述情況，我們建立一個`cache`物件，用於存儲先前存過的值。
+
+如果我們使用相同的參數多次呼叫`addFunction`函數，它首先檢查暫存中是否已有該值，如果有，則回傳暫存值，節省執行時間。如果沒有，那麼它將計算該值，並存儲在暫存中。
+
+我們用相同的值三次呼叫了`addFunction`函數：
+
+在第一次呼叫，`num`等於`10`時函數的值尚未暫存，if 語句`num in cache`回傳`false`，else 塊的代碼被執行：`Calculated! 20`，並且其結果被添加到暫存物件，`cache`現在看起來像`{10:20}`。
+
+第二次，`cache`物件包含`10`的回傳值。if 語句 `num in cache` 回傳`true`，印出`From cache! 20`。
+
+第三次，我們將`5 * 2`(值為 10) 傳遞給函數。`cache`物件包含`10`的回傳值。if 語句 `num in cache` 回傳`true`，印出`From cache! 20`。
+
+</p>
+</details>
+
+---
