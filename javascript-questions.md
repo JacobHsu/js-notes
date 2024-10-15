@@ -2572,3 +2572,41 @@ console.log(sayHi())
 </details>
 
 ---
+
+###### 82. 將會輸出什麽內容？
+
+```javascript
+var status = "😎"
+
+setTimeout(() => {
+  const status = "😍"
+
+  const data = {
+    status: "🥑",
+    getStatus() {
+      return this.status
+    }
+  }
+
+  console.log(data.getStatus())
+  console.log(data.getStatus.call(this))
+}, 0)
+```
+
+- A: `"🥑"` and `"😍"`
+- B: `"🥑"` and `"😎"`
+- C: `"😍"` and `"😎"`
+- D: `"😎"` and `"😎"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+`this`關鍵字的指向取決於使用它的位置。在**函數**中，比如`getStatus`，`this`指向的是呼叫它的物件，上述例子中`data`物件呼叫了`getStatus`，因此`this`指向的就是`data`物件。當我們輸出`this.status`時，`data`物件的`status`屬性被輸出，即`"🥑"`。
+
+使用`call`方法，可以更改`this`指向的物件。`data.getStatus.call(this)`是將`this`的指向由`data`物件更改為全局物件。在全局物件上，有一個名為`status`的變數，其值為`”😎“`。因此輸出`this.status`時，會輸出`“😎”`。
+</p>
+</details>
+
+---
