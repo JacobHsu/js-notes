@@ -2610,3 +2610,40 @@ setTimeout(() => {
 </details>
 
 ---
+
+###### 83. 將會輸出什麽內容？
+
+```javascript
+const person = {
+  name: "Lydia",
+  age: 21
+}
+
+let city = person.city
+city = "Amsterdam"
+
+console.log(person)
+```
+
+- A: `{ name: "Lydia", age: 21 }`
+- B: `{ name: "Lydia", age: 21, city: "Amsterdam" }`
+- C: `{ name: "Lydia", age: 21, city: undefined }`
+- D: `"Amsterdam"`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+我們將變數`city`設置為等於`person`物件上名為`city`的屬性的值。這個物件上沒有名為`city`的屬性，因此變數`city`的值為`undefined`。
+
+請注意，我們沒有引用`person`物件本身，只是將變數`city`設置為等於`person`物件上`city`屬性的當前值。
+
+然後，我們將`city`設置為等於字串`“Amsterdam”`。這不會更改 person 物件：沒有對該物件的引用。
+
+因此輸出`person`物件時，會回傳未修改的物件。
+
+</p>
+</details>
+
+---
