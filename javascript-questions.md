@@ -2705,3 +2705,33 @@ fetch('https://www.website.com/api/user/1')
 </details>
 
 ---
+
+###### 86. 哪個選項是將`hasName`設為`true`的方法，前提是不能將`true`作為參數傳遞？
+
+```javascript
+function getName(name) {
+  const hasName = //
+}
+```
+
+- A: `!!name`
+- B: `name`
+- C: `new Boolean(name)`
+- D: `name.length`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+使用邏輯非運算子`!`，將回傳一個布林值，使用`!! name`，我們可以確定`name`的值是`true`還是`false`。如果`name`是`true`，那麼`!name`回傳`false`。`!false`回傳`true`。
+
+通過將`hasName`設置為`name`，可以將`hasName`設置為等於傳遞給`getName`函數的值，而不是布林值`true`。
+
+`new Boolean（true）`回傳一個物件包裝器，而不是布林值本身。
+
+`name.length`回傳傳遞的參數的長度，而不是布林值`true`。
+
+</p>
+</details>
+---
