@@ -2798,3 +2798,35 @@ test(3, 4) // 3 4
 </details>
 
 ---
+
+###### 89. 將會輸出什麽內容？
+
+```javascript
+// module.js 
+export default () => "Hello world"
+export const name = "Lydia"
+
+// index.js 
+import * as data from "./module"
+
+console.log(data)
+```
+
+- A: `{ default: function default(), name: "Lydia" }`
+- B: `{ default: function default() }`
+- C: `{ default: "Hello world", name: "Lydia" }`
+- D: Global object of `module.js`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+使用`import * as name`語法，我們將`module.js`文件中所有`export`匯入到`index.js`文件中，並且建立了一個名為`data`的新物件。在`module.js`文件中，有兩個匯出：預設匯出和命名匯出。預設匯出是一個回傳字串“Hello World”的函數，命名匯出是一個名為`name`的變數，其值為字串`“Lydia”`。
+
+`data`物件具有預設匯出的`default`屬性，其他屬性具有指定 exports 的名稱及其對應的值。
+
+</p>
+</details>
+
+---
