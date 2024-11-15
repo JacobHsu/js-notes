@@ -3244,3 +3244,83 @@ console.log(one, two, three)
 </details>
 
 ---
+
+###### 102. 依序輸出什麼內容？
+
+```javascript
+const myPromise = () => Promise.resolve('I have resolved!')
+
+function firstFunction() {
+  myPromise().then(res => console.log(res))
+  console.log('second')
+}
+
+async function secondFunction() {
+  console.log(await myPromise())
+  console.log('second')
+}
+
+firstFunction()
+secondFunction()
+```
+
+- A: `I have resolved!`, `second` and `I have resolved!`, `second`
+- B: `second`, `I have resolved!` and `second`, `I have resolved!`
+- C: `I have resolved!`, `second` and `second`, `I have resolved!`
+- D: `second`, `I have resolved!` and `I have resolved!`, `second`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+
+有了 promise，我們通常會說：當我想要呼叫某個函數，但是由於它可能需要一段時間，因此暫時將它放在一邊。只有當某個值被 resolved/rejected，並且執行序為空時才使用這個值。
+
+我們可以在`async`函數中通過`.then`和`await`關鍵字獲得該值。儘管我們可以通過`.then`和`await`獲得 promise 的值，但是它們的運作方式不同。
+
+在`firstFunction`中，當執行到`myPromise`函數時我們將其放在一邊，即 promise 進入微任務佇列，其他後面的程式（`console.log('second')`）照常執行，因此`second `被輸出，`firstFunction`函數到此執行完畢，執行序中任務佇列被清空，此時開始執行微任務佇列中的任務，`I have resolved`被輸出。
+
+在`secondFunction`函數中，我們通過`await`關鍵字，暫停了後面程式的執行，直到異步函數的值被解析才開始後面程式的執行。這意味著，它會等著直到 `myPromise` 以值`I have resolved`被`resolve`之後，下一行`second`才開始執行。
+
+
+</p>
+</details>
+
+---
+###### 103. 將會輸出什麽內容？
+
+```javascript
+const set = new Set()
+
+set.add(1)
+set.add("Lydia")
+set.add({ name: "Lydia" })
+
+for (let item of set) {
+  console.log(item + 2)
+}
+```
+
+- A: `3`, `NaN`, `NaN`
+- B: `3`, `7`, `NaN`
+- C: `3`, `Lydia2`, `[Object object]2`
+- D: `"12"`, `Lydia2`, `[Object object]2`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+“+”運算子不僅用於相加數字，還可以使用它來連接字串。每當 JavaScript 引擎發現一個或多個值不是數字時，就會將數字強制為字串。
+
+第一個是數字 1。1 + 2 得到數字 3。
+
+但是，第二個是字串“Lydia”。 “Lydia”是一個字串，2 是一個數字：2 被強制轉換為字串。 “Lydia”和“2”被連接起來，產生字串“Lydia2”。
+
+`{name：“Lydia”}`是一個物件。數字和物件都不是字串，因此將二者都字串化。每當我們對正規式物件進行字串化時，它就會變成`[Object object]`。與“2”串聯的“ [Object object]”成為“[Object object]2”。
+
+</p>
+</details>
+
+---
