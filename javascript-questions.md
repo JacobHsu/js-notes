@@ -3348,3 +3348,42 @@ Promise.resolve(5)
 </p>
 </details>
 ---
+
+###### 105. 將會輸出什麽內容？
+
+```javascript
+function compareMembers(person1, person2 = person) {
+  if (person1 !== person2) {
+    console.log("Not the same!")
+  } else {
+    console.log("They are the same!")
+  }
+}
+
+const person = { name: "Lydia" }
+
+compareMembers(person)
+```
+
+- A: `Not the same!`
+- B: `They are the same!`
+- C: `ReferenceError`
+- D: `SyntaxError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+物件通過參考位址傳遞。當我們檢查物件的嚴格相等性（===）時，我們正在比較它們的參考位址。
+
+我們將“person2”的預設值設置為“person”物件，並將“person”物件作為“person1”的值傳遞。
+
+這意味著兩個值都引用緩存中的同一位置，因此它們是相等的。
+
+執行“else”語句中的代碼塊，並記錄`They are the same!`。
+
+</p>
+</details>
+
+---
