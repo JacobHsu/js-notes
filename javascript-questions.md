@@ -3428,3 +3428,24 @@ JavaScript 解釋（或取消裝箱）語句。當我們使用中括號表示法
 </details>
 
 ---
+
+###### 107. 將會輸出什麽內容？
+
+```javascript
+console.log('❤️' === '❤️')
+```
+
+- A: `true`
+- B: `false`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+在內部，表情符號是 unicode。heat 表情符號的 unicode 是`“U + 2764 U + FE0F”`。對於相同的表情符號，它們總是相同的，因此我們將兩個相等的字串相互比較，這將回傳 true。
+
+</p>
+</details>
+
+---
