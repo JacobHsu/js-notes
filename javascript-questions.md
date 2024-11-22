@@ -3449,3 +3449,36 @@ console.log('❤️' === '❤️')
 </details>
 
 ---
+
+###### 108. 哪些函數修改了原本的陣列？
+
+
+```javascript
+const emojis = ['✨', '🥑', '😍']
+
+emojis.map(x => x + '✨')
+emojis.filter(x => x !== '🥑')
+emojis.find(x => x !== '🥑')
+emojis.reduce((acc, cur) => acc + '✨')
+emojis.slice(1, 2, '✨') 
+emojis.splice(1, 2, '✨')
+```
+
+- A: `All of them`
+- B: `map` `reduce` `slice` `splice`
+- C: `map` `slice` `splice` 
+- D: `splice`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+使用`splice`方法，我們透過刪除，取代或增加元素來修改原始陣列。在這種情況下，我們從索引 1 中刪除了 2 個元素（我們刪除了`'🥑'`和`'😍'`），同時增加了✨emoji 表情。
+
+`map`，`filter`和`slice`回傳一個新陣列，`find`回傳一個元素，而`reduce`回傳一個計算過的值。
+
+</p>
+</details>
+
+---
