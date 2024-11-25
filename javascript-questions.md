@@ -3482,3 +3482,33 @@ emojis.splice(1, 2, '✨')
 </details>
 
 ---
+
+###### 109. 將會輸出什麽內容？
+
+```javascript
+const food = ['🍕', '🍫', '🥑', '🍔']
+const info = { favoriteFood: food[0] }
+
+info.favoriteFood = '🍝'
+
+console.log(food)
+```
+
+- A: `['🍕', '🍫', '🥑', '🍔']`
+- B: `['🍝', '🍫', '🥑', '🍔']`
+- C: `['🍝', '🍕', '🍫', '🥑', '🍔']` 
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+我們將`info`物件上的`favoriteFood`屬性的值設置為披薩表情符號“🍕”的字串。字串是原始內容類型。在 JavaScript 中，原始內容類型通過值起作用
+
+在這種情況下，我們將`info`物件上的`favoriteFood`屬性的值設置為等於`food`陣列中的第一個元素的值，字串為披薩表情符號（`'🍕'`）。字串是原始內容類型，並且通過值進行交換，我們更改`info`物件上`favoriteFood`屬性的值。food 陣列沒有改變，因為 favoriteFood 的值只是該陣列中第一個元素的值的複製，並且與該元素上的元素沒有相同的緩存引用食物`[0]`。當我們記錄食物時，它仍然是原始陣列`['🍕'，'🍫'，'🥑'，'🍔']`。
+
+</p>
+</details>
+
+---
