@@ -3512,3 +3512,40 @@ console.log(food)
 </details>
 
 ---
+
+###### 110. 这个函数干了什么？
+
+```javascript
+JSON.parse()
+```
+
+- A: Parses JSON to a JavaScript value
+- B: Parses a JavaScript object to JSON
+- C: Parses any JavaScript value to JSON
+- D: Parses JSON to a JavaScript object only
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+使用`JSON.parse()`方法，我们可以将 JSON 字符串解析为 JavaScript 值。
+
+```javascript
+// 将数字字符串化为有效的 JSON，然后将 JSON 字符串解析为 JavaScript 值：
+const jsonNumber = JSON.stringify(4) // '4'
+JSON.parse(jsonNumber) // 4
+
+// 将数组值字符串化为有效的 JSON，然后将 JSON 字符串解析为 JavaScript 值：
+const jsonArray = JSON.stringify([1, 2, 3]) // '[1, 2, 3]'
+JSON.parse(jsonArray) // [1, 2, 3]
+
+// 将对象字符串化为有效的 JSON，然后将 JSON 字符串解析为 JavaScript 值：
+const jsonArray = JSON.stringify({ name: "Lydia" }) // '{"name":"Lydia"}'
+JSON.parse(jsonArray) // { name: 'Lydia' }
+```
+
+</p>
+</details>
+
+---
