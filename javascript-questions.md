@@ -3549,3 +3549,47 @@ JSON.parse(jsonArray) // { name: 'Lydia' }
 </details>
 
 ---
+
+###### 111. 將會輸出什麽內容？
+
+```javascript
+let name = 'Lydia'
+
+function getName() {
+  console.log(name)
+  let name = 'Sarah'
+}
+
+getName()
+```
+
+- A: Lydia
+- B: Sarah
+- C: `undefined`
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D 
+
+每個函數都有其自己的執行上下文。`getName`函數首先在其自身的上下文（範圍）內查找，以查看其是否包含我們嘗試存取的變數`name`。上述情況，`getName`函數包含其自己的`name`變數：我們用`let`關鍵字和`Sarah`的值定義變數`name`。
+
+帶有`let`關鍵字（和`const`）的變數被提升，但是與`var`不同，它不會被***初始化***。在我們定義（初始化）它們之前，無法存取它們。這稱為“暫時性死區”。當我們嘗試在定義變數之前存取變數時，JavaScript 會拋出`ReferenceError: Cannot access 'name' before initialization`。
+
+如果我們不在`getName`函數中定義`name`變數，則 javascript 引擎會查看原型鏈。會找到其外部作用域有一個名為`name`的變數，其值為`Lydia`。在這種情況下，它將輸出`Lydia`：
+
+```javascript
+let name = 'Lydia'
+
+function getName() {
+  console.log(name)
+}
+
+getName() // Lydia
+```
+
+</p>
+</details>
+
+---
