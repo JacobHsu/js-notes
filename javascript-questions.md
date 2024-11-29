@@ -3644,3 +3644,26 @@ console.log(two.next().value) // undefined
 </details>
 
 ---
+
+###### 113. 將會輸出什麽內容？
+
+```javascript
+console.log(`${(x => x)('I love')} to program`)
+```
+
+- A: `I love to program`
+- B: `undefined to program`
+- C: `${(x => x)('I love') to program`
+- D: `TypeError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+帶有模板字面量的表達式優先被執行。相當於字串會包含表達式，這個立即執行函數`(x => x)('I love')` 回傳的值。我們向箭頭函數`x => x` 傳遞`'I love'` 作為參數。 `x` 等價於回傳的 `'I love'`。這就是結果 `I love to program`。
+
+</p>
+</details>
+
+---
