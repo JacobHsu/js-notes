@@ -1,6 +1,6 @@
 # js-notes
 
 
-## Books
+## API
 
-[《Hello 算法》](https://github.com/krahets/hello-algo)：动画图解、一键运行的数据结构与算法教程。  
+[CoinLore](https://www.coinlore.com/cryptocurrency-data-api): Cryptocurrency Prices by Market Cap
