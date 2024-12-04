@@ -3732,3 +3732,45 @@ myMap.get(() => 'greeting')
 </details>
 
 ---
+
+###### 116. 输出什么？
+
+```javascript
+const person = {
+  name: "Lydia",
+  age: 21
+}
+
+const changeAge = (x = { ...person }) => x.age += 1
+const changeAgeAndName = (x = { ...person }) => {
+  x.age += 1
+  x.name = "Sarah"
+}
+
+changeAge(person)
+changeAgeAndName()
+
+console.log(person)
+```
+
+- A: `{name: "Sarah", age: 22}`
+- B: `{name: "Sarah", age: 23}`
+- C: `{name: "Lydia", age: 22}`
+- D: `{name: "Lydia", age: 23}`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+函数 `changeAge` 和函数 `changeAgeAndName` 有着不同的参数，定义一个 _新_ 生成的对象 `{ ...person }`。这个对象有着所有 `person` 对象 中 k/v 值的副本。
+
+首项，我们调用 `changeAge` 函数并传递 `person` 对象作为它的参数。这个函数对 `age` 属性进行加一操作。`person` 现在是 `{ name: "Lydia", age: 22 }`。
+
+然后，我们调用函数 `changeAgeAndName`，然而我们没有传递参数。取而代之，`x` 的值等价 _new_ 生成的对象：`{ ...person }`。因为它是一个新生成的对象，它并不会对对象 `person` 造成任何副作用。`person` 仍然等价于 `{ name: "Lydia", age: 22 }`。
+
+</p>
+</details>
+
+---
+
