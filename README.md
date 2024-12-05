@@ -3,6 +3,7 @@
 
 ## API
 
+[Hoppscotch](https://hoppscotch.io/) • Make better APIs  
 [CoinLore](https://www.coinlore.com/cryptocurrency-data-api): Cryptocurrency Prices by Market Cap
 
 ## Deployment
