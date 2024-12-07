@@ -3824,3 +3824,46 @@ console.log(list[(num += 1)]);
 </details>
 
 ---
+
+###### 119. 输出什么？
+
+```javascript
+const person = {
+	firstName: "Lydia",
+	lastName: "Hallie",
+	pet: {
+		name: "Mara",
+		breed: "Dutch Tulip Hound"
+	},
+	getFullName() {
+		return `${this.firstName} ${this.lastName}`;
+	}
+};
+
+console.log(person.pet?.name);
+console.log(person.pet?.family?.name);
+console.log(person.getFullName?.());
+console.log(member.getLastName?.());
+```
+
+- A: `undefined` `undefined` `undefined` `undefined`
+- B: `Mara` `undefined` `Lydia Hallie` `ReferenceError`
+- C: `Mara` `null` `Lydia Hallie` `null`
+- D: `null` `ReferenceError` `null` `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+通过 ES10 或 TS3.7+[可选链操作符 `?.`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/%E5%8F%AF%E9%80%89%E9%93%BE)，我们不再需要显式检测更深层的嵌套值是否有效。如果我们尝试获取 `undefined` 或 `null` 的值 (_nullish_)，表达将会短路并返回 `undefined`.
+
+`person.pet?.name`：`person` 有一个名为 `pet` 的属性：`person.pet` 不是 nullish。它有个名为 `name` 的属性，并返回字符串 `Mara`。
+`person.pet?.family?.name`：`person` 有一个名为 `pet` 的属性：`person.pet` 不是 nullish. `pet` _并没有_ 一个名为 `family` 的属性，`person.pet.family` 是 nullish。表达式返回 `undefined`。
+`person.getFullName?.()`：`person` 有一个名为 `getFullName` 的属性：`person.getFullName()` 不是 nullish 并可以被调用，返回字符串 `Lydia Hallie`。
+`member.getLastName?.()`: 变量`member` 不存在，因此会抛出错误`ReferenceError`。
+
+</p>
+</details>
+
+---
