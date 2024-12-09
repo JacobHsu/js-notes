@@ -3867,3 +3867,32 @@ console.log(member.getLastName?.());
 </details>
 
 ---
+
+###### 120. 输出什么？
+
+```javascript
+const groceries = ["banana", "apple", "peanuts"];
+
+if (groceries.indexOf("banana")) {
+	console.log("We have to buy bananas!");
+} else {
+	console.log(`We don't have to buy bananas!`);
+}
+```
+
+- A: We have to buy bananas!
+- B: We don't have to buy bananas
+- C: `undefined`
+- D: `1`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+我们传递了一个状态 `groceries.indexOf("banana")` 给 if 条件语句。`groceries.indexOf("banana")` 返回 `0`，一个 falsy 的值。因为 if 条件语句的状态为 falsy，`else` 块区内的代码执行，并且 `We don't have to buy bananas!` 被输出。
+
+</p>
+</details>
+
+---
