@@ -3926,3 +3926,31 @@ console.log(config.language);
 </details>
 
 ---
+
+###### 122. 输出什么？
+
+```javascript
+const name = "Lydia Hallie";
+
+console.log(!typeof name === "object");
+console.log(!typeof name === "string");
+```
+
+- A: `false` `true`
+- B: `true` `false`
+- C: `false` `false`
+- D: `true` `true`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+`typeof name` 返回 `"string"`。字符串 `"string"` 是一个 truthy 的值，因此 `!typeof name` 返回一个布尔值 `false`。`false === "object"` 和 `false === "string"` 都返回 `false`。
+
+（如果我们想检测一个值的类型，我们应该用 `!==` 而不是 `!typeof`）
+
+</p>
+</details>
+
+---
