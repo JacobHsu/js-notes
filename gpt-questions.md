@@ -166,3 +166,130 @@ console.log('結束');
 </details>
 
 ---
+
+
+
+用 JavaScript 編寫的展平（`flatten`）嵌套結構。
+
+<details><summary><b>答案</b></summary>
+<p>
+
+  以下是用 JavaScript 編寫的展平（`flatten`）嵌套結構的多種實現方法，涵蓋遞迴與非遞迴版本。
+  
+### **1. 遞迴實現**
+
+使用遞迴來處理嵌套數據結構：
+
+```javascript
+function flattenRecursive(array) {
+    const result = [];
+    for (const item of array) {
+        if (Array.isArray(item)) {
+            result.push(...flattenRecursive(item)); // 遞迴展開
+        } else {
+            result.push(item);
+        }
+    }
+    return result;
+}
+
+// 測試
+const nestedArray = [1, [2, [3, 4]], [5, 6], 7];
+console.log(flattenRecursive(nestedArray)); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+---
+
+### **2. 非遞迴實現（堆疊方式）**
+
+使用堆疊模擬遞迴的行為展平數據：
+
+```javascript
+function flattenIterative(array) {
+    const stack = [...array]; // 初始化堆疊
+    const result = [];
+    while (stack.length) {
+        const item = stack.pop();
+        if (Array.isArray(item)) {
+            stack.push(...item); // 若為陣列，將其展開後壓回堆疊
+        } else {
+            result.unshift(item); // 若非陣列，直接插入結果陣列
+        }
+    }
+    return result;
+}
+
+// 測試
+const nestedArray = [1, [2, [3, 4]], [5, 6], 7];
+console.log(flattenIterative(nestedArray)); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+---
+
+### **3. 使用內建方法**
+
+在 JavaScript 中，`Array.prototype.flat()` 是展平數據的內建方法：
+
+```javascript
+const nestedArray = [1, [2, [3, 4]], [5, 6], 7];
+console.log(nestedArray.flat(Infinity)); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+- **`flat(depth)`**:
+  - `depth` 是展平的層數。
+  - 若需完全展平嵌套結構，將 `depth` 設為 `Infinity`。
+
+---
+
+### **4. 使用 `reduce` 方法**
+
+透過 `Array.prototype.reduce()` 展平數據結構：
+
+```javascript
+function flattenWithReduce(array) {
+    return array.reduce((acc, item) => {
+        if (Array.isArray(item)) {
+            return acc.concat(flattenWithReduce(item)); // 遞迴展開
+        }
+        return acc.concat(item);
+    }, []);
+}
+
+// 測試
+const nestedArray = [1, [2, [3, 4]], [5, 6], 7];
+console.log(flattenWithReduce(nestedArray)); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+---
+
+### **5. 高性能非遞迴解法**
+
+使用 `while` 與 `some` 方法檢查是否需要繼續展平：
+
+```javascript
+function flattenHighPerformance(array) {
+    while (array.some(item => Array.isArray(item))) {
+        array = [].concat(...array); // 使用展開運算符展平一層
+    }
+    return array;
+}
+
+// 測試
+const nestedArray = [1, [2, [3, 4]], [5, 6], 7];
+console.log(flattenHighPerformance(nestedArray)); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+---
+
+### **總結**
+- **簡單展平一層**：使用 `flat()` 或展開運算符（`[].concat(...array)`）。
+- **深度展平**：
+  - 小數據量：可以使用遞迴方法。
+  - 大數據量：推薦使用非遞迴堆疊方式。
+- **高效且現代**：`Array.prototype.flat(Infinity)` 是最直接的方式。
+
+選擇取決於具體需求（如性能或兼容性要求）。
+</p>
+</details>
+
+---
