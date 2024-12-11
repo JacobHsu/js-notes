@@ -379,3 +379,140 @@ window.addEventListener('resize', updateHeight);
 
 </p>
 </details>
+
+
+---
+
+
+
+為什麼有時候設定 z-index 沒作用
+
+
+<details><summary><b>答案</b></summary>
+<p>
+  設定 `z-index` 有時候「沒作用」，通常是因為其他 CSS 規則或層疊上下文的影響。以下是幾個常見的原因和解決方法：
+
+---
+
+### **1. 元素沒有設定定位（Position）**
+`z-index` 只有在元素有「定位」時才會生效。定位方式包括：
+- `relative`
+- `absolute`
+- `fixed`
+- `sticky`
+
+如果元素的 `position` 屬性是默認值 `static`，`z-index` 將無效。
+
+#### **解決方法**
+確保元素有正確的 `position`：
+```css
+.element {
+  position: relative; /* 或 absolute, fixed, sticky */
+  z-index: 10;
+}
+```
+
+---
+
+### **2. 父層的層疊上下文影響**
+當一個元素的父元素形成了**層疊上下文**（stacking context），其子元素的 `z-index` 只能在該層疊上下文內有效，無法影響其他層疊上下文之外的內容。
+
+#### **什麼會創建層疊上下文？**
+以下屬性可能會創建新的層疊上下文：
+- `position: relative/absolute/fixed/sticky` 並設置 `z-index`。
+- `transform`（例如 `transform: scale(1)`）。
+- `opacity` 小於 `1`（例如 `opacity: 0.9`）。
+- `filter`。
+- `perspective`。
+- `clip-path`。
+- `will-change`。
+- `mix-blend-mode`。
+
+#### **解決方法**
+檢查是否有父元素創建了新的層疊上下文。如果需要跨上下文調整 `z-index`，你可能需要重構 HTML 或調整 CSS 屬性。
+
+---
+
+### **3. `z-index` 與兄弟元素的影響**
+`z-index` 只會影響**同一層級的兄弟元素**。如果元素之間的層級不在同一層，則 `z-index` 無法比較。
+
+#### **解決方法**
+確認要比較的元素是否為同一層級。如果不是，調整它們的結構，使它們成為同一層級的兄弟元素。
+
+---
+
+### **4. 被其他 CSS 屬性影響**
+某些 CSS 屬性可能會導致預期外的行為，例如：
+- `overflow: hidden`：可能裁剪超出的內容，導致高 `z-index` 元素看不到。
+- `display: none`：隱藏元素無法顯示，即使 `z-index` 設置再高也無效。
+
+#### **解決方法**
+檢查這些屬性並根據需求調整，例如：
+```css
+.parent {
+  overflow: visible; /* 確保子元素不被裁剪 */
+}
+```
+
+---
+
+### **5. 瀏覽器的默認行為**
+某些 HTML 元素（如 `canvas`、`video`）可能因為瀏覽器的默認行為影響渲染順序。
+
+#### **解決方法**
+可以嘗試使用 `z-index` 與 `position` 屬性來手動控制其顯示層級。
+
+---
+
+### **6. 子元素的 `z-index` 受限於父元素**
+如果父元素的 `z-index` 被設置得很低（如 `z-index: -1`），即使子元素的 `z-index` 設置再高，也無法超出父元素的影響。
+
+#### **解決方法**
+檢查父元素的 `z-index`，必要時進行調整或重構：
+
+```css
+.parent {
+  position: relative;
+  z-index: 1;
+}
+
+.child {
+  position: absolute;
+  z-index: 10; /* 在父元素內有效，但受限於父層疊上下文 */
+}
+```
+
+---
+
+### **7. 屬性優先級錯誤**
+CSS 中的屬性可能被其他規則覆蓋，導致 `z-index` 設置無效。
+
+#### **解決方法**
+- 檢查是否有更高優先級的 CSS 規則（如 `!important` 或內嵌樣式）。
+- 使用瀏覽器開發者工具（如 Chrome DevTools）檢查實際生效的樣式。
+
+---
+
+### **檢查層疊上下文的工具**
+在解決 `z-index` 問題時，可以使用以下方法調試：
+1. **瀏覽器開發者工具**：
+   - 右鍵檢查元素，查看其 `z-index` 與其他屬性。
+2. **在線工具**：
+   使用層疊上下文可視化工具（如 [Stacking Context Inspector](https://chrome.google.com/webstore/detail/stacking-context-inspector/)）來檢查層疊上下文。
+
+---
+
+### **總結**
+`z-index` 無效的常見原因包括：
+1. 缺少 `position`。
+2. 被父層的層疊上下文限制。
+3. 元素不在同一層級。
+4. 被其他 CSS 屬性影響。
+5. 結構或優先級問題。
+
+解決這些問題的核心在於理解**層疊上下文**，並使用瀏覽器工具檢查和調整相關樣式設定。
+
+</p>
+</details>
+
+---
