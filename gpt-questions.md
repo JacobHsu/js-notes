@@ -293,3 +293,89 @@ console.log(flattenHighPerformance(nestedArray)); // [1, 2, 3, 4, 5, 6, 7]
 </details>
 
 ---
+
+
+
+
+
+### **`vh` 在手機上的問題**
+
+<details><summary><b>答案</b></summary>
+<p>
+  
+`vh`（viewport height）是 CSS 的一個單位，表示視窗高度的 1%。然而，在手機或平板設備上，`vh` 單位可能會出現以下問題：
+
+1. **地址欄與工具欄的影響**：
+   - 手機瀏覽器通常有地址欄和工具欄（如導航按鈕）。
+   - 當用戶滾動時，地址欄和工具欄會隱藏或顯示，導致視窗高度動態變化。
+   - `vh` 單位基於「當前視窗高度」計算，因此當地址欄或工具欄出現或隱藏時，`vh` 的值會改變，導致頁面布局出現跳動或不穩定。
+
+2. **不一致的視窗報告**：
+   - 不同的瀏覽器處理 `vh` 單位的方式不同。
+   - 一些瀏覽器會將工具欄包含在 `vh` 的計算中，而其他瀏覽器則不會，這導致跨瀏覽器不一致的行為。
+
+---
+
+### **替代語法與解決方案**
+
+#### **1. 使用 `100dvh`**
+新的 CSS 單位 `dvh`（Dynamic Viewport Height）是 `vh` 的改進版：
+- `100dvh` 表示「動態視窗高度」，不受工具欄影響。
+- 許多現代瀏覽器已支持 `dvh`。
+
+```css
+.height {
+    height: 100dvh; /* 使用動態視窗高度 */
+}
+```
+
+#### **2. 使用 JavaScript 動態計算高度**
+如果需要支援舊瀏覽器或更精確的控制，可以使用 JavaScript 手動計算高度：
+
+```javascript
+function updateHeight() {
+    const viewportHeight = window.innerHeight;
+    document.documentElement.style.setProperty('--vh', `${viewportHeight * 0.01}px`);
+}
+
+// 初次設置
+updateHeight();
+
+// 當視窗大小變化時更新
+window.addEventListener('resize', updateHeight);
+
+// CSS 中使用
+/* 100vh 的替代方案 */
+.element {
+    height: calc(var(--vh, 1vh) * 100);
+}
+```
+
+#### **3. 結合 `min-height` 與 `vh`**
+對於支持不一致的設備，可以用 `min-height` 確保最小高度：
+```css
+.container {
+    min-height: 100vh; /* 確保基本支持 */
+    min-height: 100dvh; /* 覆蓋現代設備的精確高度 */
+}
+```
+
+#### **4. 使用 `env(safe-area-inset-*)` 進行安全區域處理**
+在某些設備（如 iPhone 帶瀏海的設備）上，考慮使用 CSS 的 `env()` 函數處理安全區域(瀏海屏幕（Notch Screens）)：
+```css
+.container {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(100vh - env(safe-area-inset-bottom));
+}
+```
+
+---
+
+### **總結**
+1. **首選現代解法**：使用 `100dvh` 或結合 `min-height`，解決地址欄影響的問題。
+2. **兼容舊瀏覽器**：使用 JavaScript 計算並設置自定義 CSS 變數（如 `--vh`）。
+3. **跨設備的最佳體驗**：結合 `env()` 確保在支持瀏海的設備上不會截斷內容。
+
+</p>
+</details>
