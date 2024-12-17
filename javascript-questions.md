@@ -3982,3 +3982,37 @@ add(4)(5)(6);
 </details>
 
 ---
+
+###### 124. 输出什么？
+
+```javascript
+async function* range(start, end) {
+	for (let i = start; i <= end; i++) {
+		yield Promise.resolve(i);
+	}
+}
+
+(async () => {
+	const gen = range(1, 3);
+	for await (const item of gen) {
+		console.log(item);
+	}
+})();
+```
+
+- A: `Promise {1}` `Promise {2}` `Promise {3}`
+- B: `Promise {<pending>}` `Promise {<pending>}` `Promise {<pending>}`
+- C: `1` `2` `3`
+- D: `undefined` `undefined` `undefined`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+我们给 函数 range 传递：`Promise{1}`, `Promise{2}`, `Promise{3}`，Generator 函数 `range` 返回一个全是 async object promise 数组。我们将 async object 赋值给变量 `gen`，之后我们使用`for await ... of` 进行循环遍历。我们将返回的 Promise 实例赋值给 `item`：第一个返回 `Promise{1}`，第二个返回 `Promise{2}`，之后是 `Promise{3}`。因为我们正 _awaiting_ `item` 的值，resolved 状态的 promise，promise 数组的 resolved _值_ 以此为：`1`，`2`，`3`.
+
+</p>
+</details>
+
+---
