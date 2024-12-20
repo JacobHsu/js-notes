@@ -4080,3 +4080,29 @@ console.log(getFine(130, 300))
 </details>
 
 ---
+
+###### 127. 输出什么？
+
+```javascript
+const spookyItems = ["👻", "🎃", "🕸"];
+({ item: spookyItems[3] } = { item: "💀" });
+
+console.log(spookyItems);
+```
+
+- A: `["👻", "🎃", "🕸"]`
+- B: `["👻", "🎃", "🕸", "💀"]`
+- C: `["👻", "🎃", "🕸", { item: "💀" }]`
+- D: `["👻", "🎃", "🕸", "[object Object]"]`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+通过解构对象们，我们可以从右手边的对象中拆出值，并且将拆出的值分配给左手边对象同名的属性。在这种情况下，我们将值 "💀" 分配给 `spookyItems[3]`。相当于我们正在篡改数组 `spookyItems`，我们给它添加了值 "💀"。当输出 `spookyItems` 时，结果为 `["👻", "🎃", "🕸", "💀"]`。
+
+</p>
+</details>
+
+---
