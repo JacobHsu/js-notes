@@ -9,6 +9,7 @@
 [CoinLore](https://www.coinlore.com/cryptocurrency-data-api): Cryptocurrency Prices by Market Cap  
 [CoinAPI.io](https://www.coinapi.io/) - Cryptocurrency API provider `X-CoinAPI-Key` Headers  
 [REST Countries](https://restcountries.com) Search by country name.  
+[PokeAPI](https://pokeapi.co/) The RESTful Pokémon API  
 
 ## Deployment
 
