@@ -4226,3 +4226,51 @@ console.log(emojis.flat(1));
 </details>
 
 ---
+
+###### 132. 输出什么？
+
+```javascript
+class Counter {
+	constructor() {
+		this.count = 0;
+	}
+
+	increment() {
+		this.count++;
+	}
+}
+
+const counterOne = new Counter();
+counterOne.increment();
+counterOne.increment();
+
+const counterTwo = counterOne;
+counterTwo.increment();
+
+console.log(counterOne.count);
+```
+
+- A: `0`
+- B: `1`
+- C: `2`
+- D: `3`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+`counterOne` 是类 `Counter` 的一个实例。类 Counter 包含一个`count` 属性在它的构造函数里，和一个 `increment` 方法。首先，我们通过 `counterOne.increment()` 调用方法 `increment` 两次。现在，`counterOne.count` 为 `2`.
+
+<img src="https://i.imgur.com/KxLlTm9.png" width="400">
+
+然后，我们创建一个新的变量 `counterTwo` 并将 `counterOne` 的引用地址赋值给它。因为对象受引用地址的影响，我们刚刚创建了一个新的对象，其引用地址和 `counterOne` 的等价。因此它们指向同一块内存地址，任何对其的副作用都会影响 `counterTwo`。现在 `counterTwo.count` 为 `2`。
+
+我们调用 `counterTwo.increment()` 将 `count` 的值设为 `3`。然后，我们打印 `counterOne` 里的 count，结果为 `3`。
+
+<img src="https://i.imgur.com/BNBHXmc.png" width="400">
+
+</p>
+</details>
+
+---
