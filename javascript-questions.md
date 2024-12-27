@@ -4321,3 +4321,61 @@ promise 和 timeout 都是异步操作，函数继续执行当 JS 引擎忙于�
 </details>
 
 ---
+
+###### 134. 我们怎样才能在 `index.js` 中调用 `sum.js?` 中的 `sum`？
+
+```javascript
+// sum.js
+export default function sum(x) {
+	return x + x;
+}
+
+// index.js
+import * as sum from "./sum";
+```
+
+- A: `sum(4)`
+- B: `sum.sum(4)`
+- C: `sum.default(4)`
+- D: 默认导出不用 `*` 来导入，只能具名导出
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+使用符号 `*`，我们引入文件中的所有值，包括默认和具名。如果我们有以下文件：
+
+```javascript
+// info.js
+export const name = "Lydia";
+export const age = 21;
+export default "I love JavaScript";
+
+// index.js
+import * as info from "./info";
+console.log(info);
+```
+
+将会输出以下内容：
+
+```javascript
+{
+  default: "I love JavaScript",
+  name: "Lydia",
+  age: 21
+}
+```
+
+以 `sum` 为例，相当于以下形式引入值 `sum`：
+
+```javascript
+{ default: function sum(x) { return x + x } }
+```
+
+我们可以通过调用 `sum.default` 来调用该函数
+
+</p>
+</details>
+
+---
