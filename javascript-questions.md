@@ -4379,3 +4379,40 @@ console.log(info);
 </details>
 
 ---
+
+###### 135. 输出什么？
+
+```javascript
+const handler = {
+	set: () => console.log("Added a new property!"),
+	get: () => console.log("Accessed a property!")
+};
+
+const person = new Proxy({}, handler);
+
+person.name = "Lydia";
+person.name;
+```
+
+- A: `Added a new property!`
+- B: `Accessed a property!`
+- C: `Added a new property!` `Accessed a property!`
+- D: 没有任何输出
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+使用 Proxy 对象，我们可以给一个对象添加自定义行为。在这个 case，我们传递一个包含以下属性的对象 `handler` : `set` and `get`。每当我们 _设置_ 属性值时 `set` 被调用，每当我们 _获取_ 时 `get` 被调用。
+
+第一个参数是一个空对象 `{}`，作为 `person` 的值。对于这个对象，自定义行为被定义在对象 `handler`。如果我们向对象 `person` 添加属性，`set` 将被调用。如果我们获取 `person` 的属性，`get` 将被调用。
+
+首先，我们向 proxy 对象 (`person.name = "Lydia"`) 添加一个属性 `name`。`set` 被调用并输出 `"Added a new property!"`。
+
+然后，我们获取 proxy 对象的一个属性，对象 handler 的属性 `get` 被调用。输出 `"Accessed a property!"`。
+
+</p>
+</details>
+
+---
