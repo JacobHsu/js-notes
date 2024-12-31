@@ -4416,3 +4416,30 @@ person.name;
 </details>
 
 ---
+
+###### 136. 以下哪一项会对对象 `person` 有副作用？
+
+```javascript
+const person = { name: "Lydia Hallie" };
+
+Object.seal(person);
+```
+
+- A: `person.name = "Evan Bacon"`
+- B: `person.age = 21`
+- C: `delete person.name`
+- D: `Object.assign(person, { age: 21 })`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+使用 `Object.seal` 我们可以防止新属性 _被添加_，或者存在属性 _被移除_.
+
+然而，你仍然可以对存在属性进行更改。
+
+</p>
+</details>
+
+---
