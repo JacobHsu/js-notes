@@ -4507,3 +4507,41 @@ myFunc(3);
 </details>
 
 ---
+
+###### 139. 输出什么？
+
+```javascript
+class Counter {
+  #number = 10
+
+  increment() {
+    this.#number++
+  }
+
+  getNum() {
+    return this.#number
+  }
+}
+
+const counter = new Counter()
+counter.increment()
+
+console.log(counter.#number)
+```
+
+- A: `10`
+- B: `11`
+- C: `undefined`
+- D: `SyntaxError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+在 ES2020 中，通过 `#` 我们可以给 class 添加私有变量。在 class 的外部我们无法获取该值。当我们尝试输出 `counter.#number`，语法错误被抛出：我们无法在 class `Counter` 外部获取它！
+
+</p>
+</details>
+
+---
