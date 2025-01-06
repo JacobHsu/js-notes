@@ -4545,3 +4545,47 @@ console.log(counter.#number)
 </details>
 
 ---
+
+###### 140. 选择哪一个？
+
+```javascript
+const teams = [
+	{ name: "Team 1", members: ["Paul", "Lisa"] },
+	{ name: "Team 2", members: ["Laura", "Tim"] }
+];
+
+function* getMembers(members) {
+	for (let i = 0; i < members.length; i++) {
+		yield members[i];
+	}
+}
+
+function* getTeams(teams) {
+	for (let i = 0; i < teams.length; i++) {
+		// ✨ SOMETHING IS MISSING HERE ✨
+	}
+}
+
+const obj = getTeams(teams);
+obj.next(); // { value: "Paul", done: false }
+obj.next(); // { value: "Lisa", done: false }
+```
+
+- A: `yield getMembers(teams[i].members)`
+- B: `yield* getMembers(teams[i].members)`
+- C: `return getMembers(teams[i].members)`
+- D: `return yield getMembers(teams[i].members)`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+为了遍历 `teams` 数组中对象的属性 `members` 中的每一项，我们需要将 `teams[i].members` 传递给 Generator 函数 `getMembers`。Generator 函数返回一个 generator 对象。为了遍历这个 generator 对象中的每一项，我们需要使用 `yield*`.
+
+如果我们没有写 `yield`，`return yield` 或者 `return`，整个 Generator 函数不会第一时间 return 当我们调用 `next` 方法。
+
+</p>
+</details>
+
+---
