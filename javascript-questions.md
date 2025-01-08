@@ -4634,3 +4634,39 @@ pushing `dancing` 和 `baking` 之后，`person.hobbies` 的值为 `["coding", "
 </details>
 
 ---
+
+###### 142. 输出什么？
+
+```javascript
+class Bird {
+	constructor() {
+		console.log("I'm a bird. 🦢");
+	}
+}
+
+class Flamingo extends Bird {
+	constructor() {
+		console.log("I'm pink. 🌸");
+		super();
+	}
+}
+
+const pet = new Flamingo();
+```
+
+- A: `I'm pink. 🌸`
+- B: `I'm pink. 🌸` `I'm a bird. 🦢`
+- C: `I'm a bird. 🦢` `I'm pink. 🌸`
+- D: Nothing, we didn't call any method
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+我们创建了类 `Flamingo` 的实例 `pet`。当我们实例化这个实例，`Flamingo` 中的 `constructor` 被调用。首相，输出 `"I'm pink. 🌸"`，之后我们调用`super()`。`super()` 调用父类的构造函数，`Bird`。`Bird` 的构造函数被调用，并输出 `"I'm a bird. 🦢"`。
+
+</p>
+</details>
+
+---
