@@ -4670,3 +4670,59 @@ const pet = new Flamingo();
 </details>
 
 ---
+
+###### 143. 哪一个选项会导致报错？
+
+```javascript
+const emojis = ["🎄", "🎅🏼", "🎁", "⭐"];
+
+/* 1 */ emojis.push("🦌");
+/* 2 */ emojis.splice(0, 2);
+/* 3 */ emojis = [...emojis, "🥂"];
+/* 4 */ emojis.length = 0;
+```
+
+- A: 1
+- B: 1 and 2
+- C: 3 and 4
+- D: 3
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：D
+
+`const` 关键字意味着我们不能 _重定义_ 变量中的值，它 _仅可读_。然而，值本身不可修改。数组 `emojis` 中的值可被修改，如 push 新的值，拼接，又或者将数组的长度设置为 0。
+
+</p>
+</details>
+
+---
+
+###### 144. 我们需要向对象 `person` 添加什么，以致执行 `[...person]` 时获得形如 `["Lydia Hallie", 21]` 的输出？
+
+```javascript
+const person = {
+  name: "Lydia Hallie",
+  age: 21
+}
+
+[...person] // ["Lydia Hallie", 21]
+```
+
+- A: 不需要，对象默认就是可迭代的
+- B: `*[Symbol.iterator]() { for (let x in this) yield* this[x] }`
+- C: `*[Symbol.iterator]() { yield* Object.values(this) }`
+- D: `*[Symbol.iterator]() { for (let x in this) yield this }`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+对象默认并不是可迭代的。如果迭代规则被定义，则一个对象是可迭代的（An iterable is an iterable if the iterator protocol is present）。我们可以通过添加迭代器 symbol `[Symbol.iterator]` 来定义迭代规则，其返回一个 generator 对象，比如说构建一个 generator 函数 `*[Symbol.iterator]() {}`。如果我们想要返回数组 `["Lydia Hallie", 21]`: `yield* Object.values(this)`，这个 generator 函数一定要 yield 对象 `person` 的`Object.values`。
+
+</p>
+</details>
+
+---
