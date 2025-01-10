@@ -4726,3 +4726,31 @@ const person = {
 </details>
 
 ---
+
+###### 145. 输出什么？
+```javascript
+let count = 0;
+const nums = [0, 1, 2, 3];
+
+nums.forEach(num => {
+	if (num) count += 1
+})
+
+console.log(count)
+```
+
+- A: 1
+- B: 2
+- C: 3
+- D: 4
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+在 `forEach` 循环内部的 `if` 会判断 `num` 的值是 truthy 或者是 falsy。因为 `nums` 数组的第一个数字是 `0`，一个 falsy 值，`if` 语句代码块不会被执行。`count` 仅仅在 `nums` 数组的其他 3 个数字 `1`，`2`，`3` 时加 1。因为 `count` 执行了 3 次加 `1` 运算，所以 `count` 的值为 `3`。
+
+</p>
+</details>
+
+---
