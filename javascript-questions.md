@@ -4789,3 +4789,39 @@ getFruit([['🍍'], ['🍊', '🍌']])
 </details>
 
 ---
+
+###### 147. 输出什么？
+
+```javascript
+class Calc {
+	constructor() {
+		this.count = 0 
+	}
+
+	increase() {
+		this.count++
+	}
+}
+
+const calc = new Calc()
+new Calc().increase()
+
+console.log(calc.count)
+```
+
+- A: `0`
+- B: `1`
+- C: `undefined`
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+我们设置 `calc` 变量为 `Calc` 类的一个新实例。然后，我们初始化一个 `Calc` 的新实例，而且调用了这个实例的 `increase` 方法。因为 count 属性是在 `Calc` class 的 constructor 内部的，所以 count 属性不会在 `Calc` 的原型链上共享出去。这就意味着 calc 实例的 count 值不会被更新，count 仍然是 `0`。
+
+</p>
+</details>
+
+---
