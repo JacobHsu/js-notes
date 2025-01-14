@@ -4867,3 +4867,34 @@ console.log(updatedUser === user)
 </details>
 
 ---
+
+###### 149. 输出什么？
+
+```javascript
+const fruit = ['🍌', '🍊', '🍎']
+
+fruit.slice(0, 1)
+fruit.splice(0, 1)
+fruit.unshift('🍇')
+
+console.log(fruit)
+```
+
+- A: `['🍌', '🍊', '🍎']`
+- B: `['🍊', '🍎']`
+- C: `['🍇', '🍊', '🍎']`
+- D: `['🍇', '🍌', '🍊', '🍎']`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+首先，我们在 fruit 数组上调用 `slice` 方法。slice 方法不会修改原始数组，但是会返回从数组切片下来的值：香蕉 emoji。
+其次，我们在 fruit 数组上调用 `splice` 方法。splice 方法会修改原始数组，也就意味着 fruit 数组此时为 `['🍊', '🍎']`。
+最后，我们在 fruit 数组上调用 `unshift` 方法，通过添加一个值的方式改变了原始数组，添加的是'🍇'，它成为了数组的第一个元素。现在 fruit 数组的组成为 `['🍇', '🍊', '🍎']`。
+
+</p>
+</details>
+
+---
