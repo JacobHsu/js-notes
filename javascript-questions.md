@@ -4898,3 +4898,39 @@ console.log(fruit)
 </details>
 
 ---
+
+###### 150. 输出什么？
+
+```javascript
+const animals = {};
+let dog = { emoji: '🐶' }
+let cat = { emoji: '🐈' }
+
+animals[dog] = { ...dog, name: "Mara" }
+animals[cat] = { ...cat, name: "Sara" }
+
+console.log(animals[dog])
+```
+
+- A: `{ emoji: "🐶", name: "Mara" }`
+- B: `{ emoji: "🐈", name: "Sara" }`
+- C: `undefined`
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：B
+
+对象的键会被转换为字符串。
+
+因为  `dog` 的值是一个对象，`animals[dog]` 实际上意味着我们创建了一个叫做 `"object Object"` 的属性来代表新的对象。`animals["object Object"]` 现在等于 `{ emoji: "🐶", name: "Mara"}`。
+
+`cat` 也是一个对象，`animals[cat]` 实际上意味着我们在用新的 cat 的属性覆盖  `animals[``"``object Object``"``]` 的值。
+
+打印  `animals[dog]`，实际上是`animals["object Object"]`，这是因为转化`dog`对象为一个字符串结果 `"object Object"`，所以返回 `{ emoji: "🐈", name: "Sara" }`。
+
+</p>
+</details>
+
+---
