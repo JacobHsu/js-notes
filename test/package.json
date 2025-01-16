@@ -1,0 +1,17 @@
+{
+  "name": "js-notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests": "jest",
+    "test": "jest test/flatten/reduce.test.js",
+    "flat": "jest test/flatten/flat.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
