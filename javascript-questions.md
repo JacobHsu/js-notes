@@ -4934,3 +4934,34 @@ console.log(animals[dog])
 </details>
 
 ---
+
+###### 151. 输出什么？
+
+```javascript
+const user = {
+	email: "my@email.com",
+	updateEmail: email => {
+		this.email = email
+	}
+}
+
+user.updateEmail("new@email.com")
+console.log(user.email)
+```
+
+- A: `my@email.com`
+- B: `new@email.com`
+- C: `undefined`
+- D: `ReferenceError`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：A
+
+`updateEmail` 函数是一个箭头函数，它没有和 `user` 对象绑定。这就意味着 `this` 关键字不会引用到 `user` 对象，但是会引用到全局对象。`user` 对象内部的 `email` 的值不会更新。当打印 `user.email` 的时候，原始值 `my@email.com` 被返回。
+
+</p>
+</details>
+
+---
