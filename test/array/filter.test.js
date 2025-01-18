@@ -1,4 +1,4 @@
-const flatten = require("./filter"); 
+const myFilter = require("./filter"); 
 
 const isEven = (element, index) => element % 2 === 0;
 const isOdd = (element, index) => element % 2 === 1;

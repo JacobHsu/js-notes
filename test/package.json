@@ -7,7 +7,8 @@
     "tests": "jest",
     "test": "jest test/flatten/reduce.test.js",
     "flat": "jest test/flatten/flat.test.js",
-    "filter": "jest test/array/filter.test.js"
+    "filter": "jest test/array/filter.test.js",
+    "curry": "jest test/curry/curry.test.js"
   },
   "keywords": [],
   "author": "",

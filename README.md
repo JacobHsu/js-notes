@@ -1,6 +1,5 @@
 # js-notes
 
-
 ## API
 
 [Hoppscotch](https://hoppscotch.io/) • Make better APIs  
@@ -19,4 +18,10 @@
 ## Testing
 
 [Testing Library](https://testing-library.com/)  Simple and complete testing utilities that encourage good testing practices  
+
+## Practice   
+
+[BigFrontEnd.dev](https://bigfrontend.dev/)  
+[GreatFrontEnd](https://www.greatfrontend.com/)  
+
 
