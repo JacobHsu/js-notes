@@ -5001,3 +5001,34 @@ runPromises()
 </details>
 
 ---
+
+###### 153. 哪个作为`method`的值可以打印`{ name: "Lydia", age: 22 }`?
+
+```javascript
+const keys = ["name", "age"]
+const values = ["Lydia", 22]
+
+const method = /* ?? */
+Object[method](keys.map((_, i) => {
+	return [keys[i], values[i]]
+})) // { name: "Lydia", age: 22 }
+```
+
+- A: `entries`
+- B: `values`
+- C: `fromEntries`
+- D: `forEach`
+
+<details><summary><b>答案</b></summary>
+<p>
+
+#### 答案：C
+
+ `fromEntries` 方法可以将二维数组转换为对象。在每个子数组的第一个元素是 key，在每个子数组的第二个元素是 value。在这个例子中，我们映射了 `keys` 数组，它返回了一个数组，数组的第一个元素为 keys 数组当前索引的值，第二个元素为 values 数组当前索引的值。
+
+这样就创建了一个包含正确 keys 和 values 的子数组的数组，因此结果为`{ name: "Lydia", age: 22 }`。
+
+</p>
+</details>
+
+---
