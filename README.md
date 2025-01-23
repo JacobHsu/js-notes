@@ -19,6 +19,10 @@
 
 [Testing Library](https://testing-library.com/)  Simple and complete testing utilities that encourage good testing practices  
 
+## Docs
+
+[Hashnode](https://hashnode.com/) — Build blogs and API docs for developers and teams.
+
 ## Practice   
 
 [freeCodeCamp](https://www.freecodecamp.org/)  
