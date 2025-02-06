@@ -14,6 +14,7 @@
 
 [Netlify](https://www.netlify.com/): Scale & Ship Faster with a Composable Web Architecture  
 [Render](https://render.com/): Cloud Application Platform  
+[Zeabur](https://zeabur.com/zh-TW) - Deploy Painlessly, Scale Infinitely
 
 ## Testing
 
